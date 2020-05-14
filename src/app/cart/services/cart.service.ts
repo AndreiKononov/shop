@@ -12,6 +12,7 @@ export class CartService {
 
   getProducts(): Array<Product> {
     return [
+      // Думаю, что в корзине стоит использовать немного другую модель, чтобы можно было указать количество купленого товара.
       new Product(1, 'Apple', 'A big green apple ', 3, true, true),
       new Product(2, 'Orange', 'An usual orange', 8),
       new Product(3, 'Banana', 'Just a simple yellow banana', 2, true),

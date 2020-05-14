@@ -16,3 +16,5 @@ export class ProductComponent implements OnInit {
   }
 
 }
+// Желательно для каждого компонента создавать папку.
+// Когда будет 5-7 компонентов, будет очень много файлов в папке components.

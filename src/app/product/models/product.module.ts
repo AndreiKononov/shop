@@ -10,3 +10,5 @@ import { CommonModule } from '@angular/common';
   ]
 })
 export class ProductModule { }
+// Не очень понятно, почему модуль находится в папке с моделями?
+// Его удобно в корне расположить
