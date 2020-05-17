@@ -5,8 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CartComponent } from './cart/components/cart.component';
 import { FirstComponent } from './first/first.component';
-import { ProductComponent } from './product/components/product.component';
-import { ProductListComponent } from './product/components/product-list.component';
+import { ProductComponent } from './product/components/product/product.component';
+import { ProductListComponent } from './product/components/product-list/product-list.component';
 
 @NgModule({
   declarations: [
