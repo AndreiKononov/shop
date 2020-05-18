@@ -1,3 +1,7 @@
 export enum Category {
-  Fruit, Vegetable, Other
+    JavaScript = 'JavaScript',
+    Java = 'Java',
+    CSS = 'CSS',
+    Fiction = 'Fiction',
+    Other = 'Other',
 }
