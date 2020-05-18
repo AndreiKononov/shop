@@ -1,18 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss']
+    selector: 'app-product',
+    templateUrl: './product.component.html',
+    styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit {
 
-  constructor() { }
+    constructor() {
+    }
 
-  ngOnInit(): void {
-  }
-  onBuy() {
-    console.log(`This product was purchased` );
-  }
+    ngOnInit(): void {
+    }
+
+    onBuy() {
+        console.log(`This product was purchased`);
+    }
 
 }
