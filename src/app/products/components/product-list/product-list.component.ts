@@ -9,19 +9,6 @@ import { ProductService } from '../../services/products.service';
     styleUrls: ['./product-list.component.scss']
 })
 
-// export class ProductListComponent {
-//     @Input()
-//     products: Array<Product>;
-//
-//     @Output()
-//     completeTask: EventEmitter<Product> = new EventEmitter();
-//
-//     onCompleteTask(task: Product): void {
-//         console.log('task-list component, completeTask method', task);
-//         this.completeTask.emit(task);
-//     }
-// }
-
 export class ProductListComponent implements OnInit {
     products: Array<Product>;
 
