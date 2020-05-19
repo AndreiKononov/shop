@@ -1,23 +1,16 @@
+<img src="././app/shared/images/Clean%20Code.jpg" alt="Book's cover">
 <ul>
-    <li>
-        <img src="././app/shared/images/Clean%20Code.jpg" alt="Book's cover">
-        <ul>
-            <li>Name: {{product.name}}</li>
-            <li>Author: {{product.author}}</li>
-            <li>Description: {{product.description}}</li>
-            <li>Price: {{product.price}} $</li>
-            <li>Category: {{product.category}}</li>
-            <li [ngClass]="{ 'not-available': !product.available }">Available for purchasing: {{product.available}}</li>
-            <li>
-                <button
-                    (click)="onBuy()"
-                    [ngStyle]="{'font-weight': product.available ? 'bold' : 'initial' }"
-                    [disabled]="!product.available">
-                    Buy
-                </button>
-            </li>
-        </ul>
-        <hr>
-    </li>
+    <li>Name: {{product.name}}</li>
+    <li>Author: {{product.author}}</li>
+    <li>Description: {{product.description}}</li>
+    <li>Price: {{product.price}} $</li>
+    <li>Category: {{product.category}}</li>
+    <li [ngClass]="{ 'not-available': !product.available }">Available for purchasing: {{product.available}}</li>
 </ul>
-
+<button
+    (click)="addToCart.emit()"
+    [ngStyle]="{'font-weight': product.available ? 'bold' : 'initial' }"
+    [disabled]="!product.available">
+    Buy
+</button>
+<hr>

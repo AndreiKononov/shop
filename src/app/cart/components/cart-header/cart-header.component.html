@@ -1,0 +1,17 @@
+<a>
+    <h1>My Shop</h1>
+</a>
+<a class="button fancy-button">
+    <i class="material-icons">shopping_cart</i>
+    My Cart
+    <span *ngIf="products.length; else emptyCart" class="badge badge-pill badge-success">
+    {{products.length}}
+  </span>
+</a>
+<ng-template #emptyCart>
+    <span class="badge badge-pill badge-success">is empty</span>
+</ng-template>
+
+
+
+

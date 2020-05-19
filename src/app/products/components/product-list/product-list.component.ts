@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 
 import { Product } from '../../models/product.model';
 import { ProductService } from '../../services/products.service';
+import { CartService } from '../../../cart/services/cart.service';
 
 @Component({
     selector: 'app-product-list',
@@ -14,6 +15,7 @@ export class ProductListComponent implements OnInit {
 
     constructor(
         private productService: ProductService,
+        private cartService: CartService,
     ) {
     }
 
@@ -21,10 +23,7 @@ export class ProductListComponent implements OnInit {
         this.products = this.productService.getProducts();
     }
 
-    addToCart(product: Product) {
-        // if (product.available) {
-        //     this.cartService.addProduct(product);
-        // }
+    addToCart(product: Product): void {
+        this.cartService.addCartItem(product);
     }
-
 }
