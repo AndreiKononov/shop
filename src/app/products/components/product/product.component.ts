@@ -17,6 +17,6 @@ export class ProductComponent {
     addToCart = new EventEmitter<Product>();
 
     onBuy() {
-        // this.addToCart.emit(this.product);
+        this.addToCart.emit(this.product);
     }
 }
