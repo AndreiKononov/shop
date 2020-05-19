@@ -11,7 +11,7 @@ export const mockedBooks: Product[] = [
             ' the core language and to the client side JavaScript APIs defined by web browsers. ',
         price: 37.38,
         category: Category.JavaScript,
-        available: 0,
+        available: 2,
         selected: 0,
     },
     {

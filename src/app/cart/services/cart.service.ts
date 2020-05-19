@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { Product } from '../../product/models/product.model';
-import { mockedBooks } from '../../product/services/products.constants';
+import { Product } from '../../products/models/product.model';
+import { mockedBooks } from '../../products/services/products.constants';
 
 @Injectable({
     providedIn: 'root'
@@ -9,7 +9,7 @@ import { mockedBooks } from '../../product/services/products.constants';
 
 export class CartService {
 
-    private books: Product[] = mockedBooks;
+    books: Product[] = mockedBooks;
 
     constructor() {
     }
