@@ -1,8 +1,10 @@
 <ol>
     <li *ngFor="let product of products">
         <app-cart-item
+            appHover
             [product]="product"
         ></app-cart-item>
+        <hr>
     </li>
 </ol>
 <button (click)="resetCart()">Reset cart</button>

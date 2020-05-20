@@ -38,7 +38,7 @@ export const mockedBooks: Product[] = [
             'But it doesn’t have to be that way.',
         price: 34.93,
         category: Category.Other,
-        available: 0,
+        available: 2,
         selected: 0,
     },
     {

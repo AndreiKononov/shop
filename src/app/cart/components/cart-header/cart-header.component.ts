@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { OnInit, Component } from '@angular/core';
 
 import { CartService } from '../../services/cart.service';
 import { CartItem } from '../../models/cartItem.model';
@@ -13,7 +13,7 @@ export class CartHeaderComponent implements OnInit {
     products: Array<CartItem>;
 
     constructor(
-        private productService: CartService
+        private productService: CartService,
     ) {
     }
 
