@@ -8,8 +8,7 @@ import { mockedBooks } from './products.constants';
 })
 
 export class ProductService {
-
-    private books: Product[] = mockedBooks;
+    books: Product[] = mockedBooks;
 
     constructor() {
     }
@@ -17,5 +16,4 @@ export class ProductService {
     getProducts(): Array<Product> {
         return this.books;
     }
-
 }

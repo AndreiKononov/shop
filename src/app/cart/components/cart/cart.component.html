@@ -1,0 +1,9 @@
+<app-cart-header></app-cart-header>
+<div *ngIf="products.length; else emptyCart" class="cart">
+    <h6>You selected:</h6>
+    <app-cart-list></app-cart-list>
+</div>
+
+<ng-template #emptyCart >
+    <h6 class="cart">There are not selected books in the cart</h6>
+</ng-template>
