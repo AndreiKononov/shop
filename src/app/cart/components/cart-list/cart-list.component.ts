@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 
 import { ProductService } from '../../../products/services/products.service';
 import { CartService } from '../../services/cart.service';
 import { CartItem } from '../../models/cartItem.model';
+import { Subscription } from 'rxjs';
 
 const HOVER_COLOR = 'beige';
 
@@ -12,8 +13,8 @@ const HOVER_COLOR = 'beige';
   styleUrls: ['./cart-list.component.scss']
 })
 
-export class CartListComponent implements OnInit {
-
+export class CartListComponent implements OnInit, OnDestroy {
+    private products$: Subscription;
     products: Array<CartItem>;
     HOVER_COLOR = HOVER_COLOR;
 
@@ -24,7 +25,21 @@ export class CartListComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.products = this.cartService.getCartItems();
+        this.products$ = this.cartService.productsSubject.subscribe(products => {
+            this.products = products;
+        });
+    }
+
+    ngOnDestroy(): void {
+        this.products$.unsubscribe();
+    }
+
+    onIncrease(product: CartItem) {
+        this.cartService.increaseAmount(product);
+    }
+
+    onDecrease(product: CartItem) {
+        this.cartService.decreaseAmount(product);
     }
 
     getTotalCost() {

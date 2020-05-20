@@ -2,6 +2,8 @@
     <li *ngFor="let product of products;" [appHoverEffect]="HOVER_COLOR">
         <app-cart-item
             [product]="product"
+            (increase)="onIncrease($event)"
+            (decrease)="onDecrease($event)"
         ></app-cart-item>
         <hr>
     </li>

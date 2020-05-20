@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 import { CartItem } from '../../models/cartItem.model';
 
@@ -10,5 +10,16 @@ import { CartItem } from '../../models/cartItem.model';
 export class CartItemComponent {
 
     @Input() product: CartItem;
+
+    @Output() increase = new EventEmitter<CartItem>();
+    @Output() decrease = new EventEmitter<CartItem>();
+
+    onIncrease() {
+        this.increase.emit(this.product);
+    }
+
+    onDecrease() {
+        this.decrease.emit(this.product);
+    }
 
 }

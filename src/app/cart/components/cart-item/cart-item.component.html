@@ -1,5 +1,5 @@
 <h6>{{ product.name }} </h6>
 <h6>Total count: {{ product.selected }}</h6>
 <h6>Total price: {{ product.price | currency }}</h6>
-
-
+<button (click)="onIncrease()">add</button>
+<button (click)="onDecrease()">remove</button>

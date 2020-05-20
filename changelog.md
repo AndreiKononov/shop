@@ -18,3 +18,5 @@ The button "Buy" is disabled if product unavailable (used  ngClass/ngStyle direc
 CartItem changes background colour by a mouse hover (created a directive 'HoverDirective', used @HostBinding, @HostListener decorators)
 ## Updated app title
 Using @ViewChild decorator (NOTICE: used in cart-header component, not in app component as described in task 2.11 )
+## Calculation
+Added total cost calculation
