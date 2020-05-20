@@ -6,4 +6,8 @@
         <hr>
     </li>
 </ol>
+<div>
+    <h6>Total price: {{ getTotalCost() | currency }}</h6>
+</div>
+
 <button (click)="resetCart()">Reset cart</button>

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 
 import { Product } from '../../products/models/product.model';
 import { CartItem } from '../models/cartItem.model';
-import { mockedBooks } from '../../products/services/products.constants';
 
 @Injectable({
     providedIn: 'root'
@@ -10,7 +9,6 @@ import { mockedBooks } from '../../products/services/products.constants';
 
 export class CartService {
 
-    // mockedBooks: Product[] = mockedBooks;
     books: CartItem[] = [];
 
     getCartItems(): Array<CartItem> {
@@ -18,18 +16,29 @@ export class CartService {
     }
 
     addCartItem(item: Product): void {
-        const cartItem: CartItem = this.books.find(el => el.name === item.name);
-        // console.log(cartItem);
-        // const productItem: Product = this.mockedBooks.find(el => el.id === item.id);
-        // console.log(productItem)
-        if (cartItem) {
-            cartItem.selected++;
-            // productItem.selected--;
-
+        const cartProduct = this.books.find(el => el.id === item.id);
+        if (cartProduct) {
+            this.increaseAmount(cartProduct);
         } else {
-            const newCartItem: CartItem = Object.assign({}, item, {selected: 1});
-            this.books.push(newCartItem);
+            this.books.push({
+                id: item.id,
+                name: item.name,
+                description: '',
+                price: item.price,
+                available: false,
+                selected: 1,
+                category: null,
+            });
         }
+    }
+
+    increaseAmount(product: CartItem) {
+        product.price = product.price + product.price / product.selected;
+        product.selected++;
+    }
+
+    getTotalCost(): number {
+        return this.books.map(product => product.price).reduce((total, price) => total + price, 0);
     }
 
     resetCart(): void {
