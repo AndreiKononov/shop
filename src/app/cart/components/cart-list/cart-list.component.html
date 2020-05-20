@@ -1,7 +1,6 @@
 <ol>
-    <li *ngFor="let product of products">
+    <li *ngFor="let product of products;" [appHoverEffect]="HOVER_COLOR">
         <app-cart-item
-            appHover
             [product]="product"
         ></app-cart-item>
         <hr>

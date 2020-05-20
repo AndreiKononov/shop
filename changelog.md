@@ -15,5 +15,6 @@ Was used the directive *ngIf to display an amount of selected products (Task 1.7
 Were used @Input(), @Output() decorators, OnPush strategy as well
 ## Styles
 The button "Buy" is disabled if product unavailable (used  ngClass/ngStyle directives).
+CartItem changes background colour by a mouse hover (created a directive 'HoverDirective', used @HostBinding, @HostListener decorators)
 ## Updated app title
-Using @ViewChild decorator (NOTICE: used in cart-title component, not in app component as described in task 2.11 )
+Using @ViewChild decorator (NOTICE: used in cart-header component, not in app component as described in task 2.11 )

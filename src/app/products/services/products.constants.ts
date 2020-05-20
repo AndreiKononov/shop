@@ -11,7 +11,7 @@ export const mockedBooks: Product[] = [
             ' the core language and to the client side JavaScript APIs defined by web browsers. ',
         price: 37.38,
         category: Category.JavaScript,
-        available: 1,
+        available: true,
         selected: 1,
     },
     {
@@ -25,7 +25,7 @@ export const mockedBooks: Product[] = [
             ' multiple paradigms increases the need for specific best-practices advice, and this book delivers.',
         price: 43.49,
         category: Category.Java,
-        available: 2,
+        available: true,
         selected: 2,
     },
     {
@@ -38,7 +38,7 @@ export const mockedBooks: Product[] = [
             'But it doesn’t have to be that way.',
         price: 34.93,
         category: Category.Other,
-        available: 2,
+        available: true,
         selected: 0,
     },
     {
@@ -53,7 +53,7 @@ export const mockedBooks: Product[] = [
             'designers alike.',
         price: 23.39,
         category: Category.CSS,
-        available: 0,
+        available: false,
         selected: 0,
     },
     {
@@ -69,7 +69,7 @@ export const mockedBooks: Product[] = [
             ' life, and in the end, for the life of the man she loves.',
         price: 17.99,
         category: Category.Fiction,
-        available: 0,
+        available: false,
         selected: 0,
     },
 ];

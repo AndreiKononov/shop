@@ -6,6 +6,6 @@ export interface CartItem extends Partial<Product> {
     description: string;
     price: number;
     category: Category;
-    available: number;
+    available: boolean;
     selected: number;
 }

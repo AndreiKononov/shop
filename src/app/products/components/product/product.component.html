@@ -5,7 +5,8 @@
     <li>Description: {{product.description}}</li>
     <li>Price: {{product.price}} $</li>
     <li>Category: {{product.category}}</li>
-    <li [ngClass]="{ 'not-available': !product.available }">Available for purchasing: {{product.available}}</li>
+    <li [ngClass]="{ 'not-available': !product.available, 'available': product.available }">Available for purchasing:
+        {{product.available}}</li>
 </ul>
 <button
     (click)="addToCart.emit()"

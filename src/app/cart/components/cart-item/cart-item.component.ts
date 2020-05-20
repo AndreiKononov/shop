@@ -1,6 +1,5 @@
-import { Component, Input, Output, EventEmitter} from '@angular/core';
+import { Component, Input } from '@angular/core';
 
-import { Product } from '../../../products/models/product.model';
 import { CartItem } from '../../models/cartItem.model';
 
 @Component({
@@ -9,6 +8,7 @@ import { CartItem } from '../../models/cartItem.model';
   styleUrls: ['./cart-item.component.scss']
 })
 export class CartItemComponent {
-    @Input() product: Product;
+
+    @Input() product: CartItem;
 
 }
