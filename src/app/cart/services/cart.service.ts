@@ -47,9 +47,6 @@ export class CartService {
     removeProduct(product: CartItem) {
         this.books = this.books.filter(productInCart => productInCart.id !== product.id);
         this.updateProducts();
-        if (!this.books.length) {
-            this.resetCart();
-        }
     }
 
     increaseAmount(product: CartItem) {
