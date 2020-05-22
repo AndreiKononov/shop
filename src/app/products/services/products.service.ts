@@ -13,7 +13,7 @@ export class ProductService {
     constructor() {
     }
 
-    getProducts(): Array<Product> {
+    getProducts(): Product[] {
         return this.books;
     }
 }

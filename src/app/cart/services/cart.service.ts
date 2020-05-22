@@ -11,7 +11,8 @@ import { Subject } from 'rxjs';
 export class CartService {
 
     books: CartItem[] = [];
-
+    totalQuantity = 0;
+    totalSum = 0;
     public productsSubject = new Subject<CartItem[]>();
 
     constructor() {
@@ -19,6 +20,14 @@ export class CartService {
     }
 
     private updateProducts() {
+        this.totalQuantity = this.books.reduce(
+            (prev, cur) => prev + cur.count,
+            0
+        );
+        this.totalSum = this.books.reduce(
+            (prev, cur) => prev + cur.getTotal(),
+            0
+        );
         this.productsSubject.next(this.books);
     }
 
@@ -27,47 +36,37 @@ export class CartService {
     }
 
     addCartItem(item: Product): void {
-        const cartProduct = this.books.find(el => el.id === item.id);
+        let cartProduct = this.books.find(
+            (o) => o.product.id === item.id
+        );
         if (cartProduct) {
-            this.increaseAmount(cartProduct);
+            cartProduct.count++;
         } else {
-            this.books.push({
-                id: item.id,
-                name: item.name,
-                description: '',
-                price: item.price,
-                available: false,
-                selected: 1,
-                category: null,
-            });
+            cartProduct = new CartItem(item, 1);
+            this.books.push(cartProduct);
         }
+        cartProduct.product.availableCount--;
         this.updateProducts();
     }
 
     removeProduct(product: CartItem) {
-        this.books = this.books.filter(productInCart => productInCart.id !== product.id);
+        product.product.availableCount += product.count;
+        this.books.splice(
+            this.books.findIndex((o) => o === product),
+            1
+        );
         this.updateProducts();
     }
 
     increaseAmount(product: CartItem) {
-        product.price = product.price + product.price / product.selected;
-        product.selected++;
+        product.count++;
+        product.product.availableCount--;
+        this.updateProducts();
     }
 
     decreaseAmount(product: CartItem) {
-        if (product.selected === 1) {
-            this.removeProduct(product);
-        } else {
-            product.price = product.price - product.price / product.selected;
-            product.selected--;
-        }
-    }
-
-    getTotalCost(): number {
-        return this.books.map(product => product.price).reduce((total, price) => total + price, 0);
-    }
-
-    resetCart(): void {
-        this.books.length = 0;
+        product.count--;
+        product.product.availableCount++;
+        this.updateProducts();
     }
 }

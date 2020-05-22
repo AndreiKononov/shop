@@ -1,11 +1,10 @@
 import { Product } from '../../products/models/product.model';
-import { Category } from '../../products/enums/category';
 
-export interface CartItem extends Partial<Product> {
-    name: string;
-    description: string;
-    price: number;
-    category: Category;
-    available: boolean;
-    selected: number;
+export class CartItem {
+    constructor(public product: Product, public count: number) {
+    }
+
+    getTotal(): number {
+        return this.count * this.product.price;
+    }
 }

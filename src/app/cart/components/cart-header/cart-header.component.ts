@@ -14,12 +14,16 @@ export class CartHeaderComponent implements OnInit, AfterViewInit {
     @ViewChild('appTitle') titleTag: ElementRef<HTMLInputElement>;
 
     constructor(
-        private productService: CartService,
+        private cartService: CartService,
     ) {
     }
 
     ngOnInit(): void {
-        this.products = this.productService.getCartItems();
+        this.products = this.cartService.getCartItems();
+    }
+
+    getTotalQuantity(): number {
+        return this.cartService.totalQuantity;
     }
 
     ngAfterViewInit() {

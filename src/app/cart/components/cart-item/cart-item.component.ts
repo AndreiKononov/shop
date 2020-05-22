@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 import { CartItem } from '../../models/cartItem.model';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-cart-item',
@@ -11,15 +12,18 @@ export class CartItemComponent {
 
     @Input() product: CartItem;
 
-    @Output() increase = new EventEmitter<CartItem>();
-    @Output() decrease = new EventEmitter<CartItem>();
+    constructor(
+        public cartService: CartService,
+    ) {}
 
-    onIncrease() {
-        this.increase.emit(this.product);
+    onRemoveProduct(): void {
+        this.cartService.removeProduct(this.product);
     }
 
-    onDecrease() {
-        this.decrease.emit(this.product);
+    onIncreaseQuantity(): void {
+        this.cartService.increaseAmount(this.product);
     }
-
+    onDecreaseQuantity(): void {
+        this.cartService.decreaseAmount(this.product);
+    }
 }

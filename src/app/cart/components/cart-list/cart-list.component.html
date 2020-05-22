@@ -1,15 +1,11 @@
 <ol>
     <li *ngFor="let product of products;" appHoverEffect>
         <app-cart-item
-            [product]="product"
-            (increase)="onIncrease($event)"
-            (decrease)="onDecrease($event)"
-        ></app-cart-item>
+            [product]="product">
+        </app-cart-item>
         <hr>
     </li>
 </ol>
 <div>
-    <h6>Total price: {{ getTotalCost() | currency }}</h6>
+    <h6>Total price: {{ getTotalSum() | currency }}</h6>
 </div>
-
-<button (click)="resetCart()">Reset cart</button>

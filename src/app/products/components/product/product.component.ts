@@ -14,5 +14,9 @@ export class ProductComponent {
     product: Product;
 
     @Output()
-    addToCart: EventEmitter<void> = new EventEmitter();
+    buyProduct: EventEmitter<Product> = new EventEmitter<Product>();
+
+    onBuyProduct() {
+        this.buyProduct.emit(this.product);
+    }
 }
