@@ -5,8 +5,6 @@ import { CartService } from '../../services/cart.service';
 import { CartItem } from '../../models/cartItem.model';
 import { Subscription } from 'rxjs';
 
-const HOVER_COLOR = 'beige';
-
 @Component({
   selector: 'app-cart-list',
   templateUrl: './cart-list.component.html',
@@ -16,7 +14,6 @@ const HOVER_COLOR = 'beige';
 export class CartListComponent implements OnInit, OnDestroy {
     private products$: Subscription;
     products: Array<CartItem>;
-    HOVER_COLOR = HOVER_COLOR;
 
     constructor(
         private productService: ProductService,
@@ -25,28 +22,34 @@ export class CartListComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
+        console.log('ngOnInit');
         this.products$ = this.cartService.productsSubject.subscribe(products => {
             this.products = products;
         });
     }
 
     ngOnDestroy(): void {
+        console.log('ngOnDestroy');
         this.products$.unsubscribe();
     }
 
     onIncrease(product: CartItem) {
+        console.log('onIncrease');
         this.cartService.increaseAmount(product);
     }
 
     onDecrease(product: CartItem) {
+        console.log('onDecrease');
         this.cartService.decreaseAmount(product);
     }
 
     getTotalCost() {
+        console.log('getTotalCost');
         return this.cartService.getTotalCost();
     }
 
     resetCart(): void {
+        console.log('resetCart');
         this.cartService.resetCart();
     }
 }

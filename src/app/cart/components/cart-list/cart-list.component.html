@@ -1,5 +1,5 @@
 <ol>
-    <li *ngFor="let product of products;" [appHoverEffect]="HOVER_COLOR">
+    <li *ngFor="let product of products;" appHoverEffect>
         <app-cart-item
             [product]="product"
             (increase)="onIncrease($event)"
