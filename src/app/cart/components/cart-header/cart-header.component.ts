@@ -10,7 +10,7 @@ import { CartItem } from '../../models/cartItem.model';
 })
 export class CartHeaderComponent implements OnInit, AfterViewInit {
 
-    products: Array<CartItem>;
+    cartItems: CartItem[];
     @ViewChild('appTitle') titleTag: ElementRef<HTMLInputElement>;
 
     constructor(
@@ -19,7 +19,7 @@ export class CartHeaderComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit(): void {
-        this.products = this.cartService.getCartItems();
+        this.cartItems = this.cartService.getCartItems();
     }
 
     getTotalQuantity(): number {

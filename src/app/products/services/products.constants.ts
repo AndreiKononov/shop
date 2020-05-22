@@ -11,7 +11,7 @@ export const mockedBooks: Product[] = [
         'and to the client side JavaScript APIs defined by web browsers. ',
         10,
         Category.JavaScript,
-        2),
+        3),
     new Product(
         2,
         'Effective Java',
@@ -32,7 +32,7 @@ export const mockedBooks: Product[] = [
         'But it doesn’t have to be that way.',
         10,
         Category.Other,
-        0),
+        1),
     new Product(
         4,
         'CSS: The Missing Manual',

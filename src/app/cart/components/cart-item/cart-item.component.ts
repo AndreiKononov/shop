@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { CartItem } from '../../models/cartItem.model';
 import { CartService } from '../../services/cart.service';
@@ -8,22 +8,23 @@ import { CartService } from '../../services/cart.service';
   templateUrl: './cart-item.component.html',
   styleUrls: ['./cart-item.component.scss']
 })
+
 export class CartItemComponent {
 
-    @Input() product: CartItem;
+    @Input() cartItem: CartItem;
 
     constructor(
         public cartService: CartService,
     ) {}
 
-    onRemoveProduct(): void {
-        this.cartService.removeProduct(this.product);
+    onRemoveCartItem(): void {
+        this.cartService.removeCartItem(this.cartItem);
     }
 
     onIncreaseQuantity(): void {
-        this.cartService.increaseAmount(this.product);
+        this.cartService.increaseAmount(this.cartItem);
     }
     onDecreaseQuantity(): void {
-        this.cartService.decreaseAmount(this.product);
+        this.cartService.decreaseAmount(this.cartItem);
     }
 }

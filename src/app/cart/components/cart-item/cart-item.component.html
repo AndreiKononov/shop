@@ -1,17 +1,17 @@
-<h6>{{ product.product.name }} </h6>
-<h6>Total count: {{ product.count }}</h6>
-<h6>Total price: {{ product.product.price * product.count | currency}}</h6>
+<h6>{{ cartItem.product.name }} </h6>
+<h6>Total count: {{ cartItem.count }}</h6>
+<h6>Total price: {{ cartItem.product.price * cartItem.count | currency}}</h6>
 <button
     (click)="onIncreaseQuantity()"
-    [disabled]="!product.product.availableCount">
+    [disabled]="!cartItem.product.availableCount">
         add
 </button>
 <button
     (click)="onDecreaseQuantity()"
-    [disabled]="!product.count">
+    [disabled]="!cartItem.count">
         remove
 </button>
 <button
-    (click)="onRemoveProduct()">
+    (click)="onRemoveCartItem()">
     clear
 </button>

@@ -1,7 +1,7 @@
 <ol>
-    <li *ngFor="let product of products;" appHoverEffect>
+    <li *ngFor="let cartItem of cartItems;" appHoverEffect>
         <app-cart-item
-            [product]="product">
+            [cartItem]="cartItem">
         </app-cart-item>
         <hr>
     </li>

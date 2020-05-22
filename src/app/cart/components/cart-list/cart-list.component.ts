@@ -10,14 +10,14 @@ import { CartItem } from '../../models/cartItem.model';
 })
 
 export class CartListComponent implements OnInit {
-    products: Array<CartItem>;
+    cartItems: CartItem[];
 
     constructor(
         private cartService: CartService,
     ) {}
 
     ngOnInit(): void {
-        this.products = this.cartService.getCartItems();
+        this.cartItems = this.cartService.getCartItems();
     }
 
     getTotalSum(): number {

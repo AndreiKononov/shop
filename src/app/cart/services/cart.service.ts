@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Product } from '../../products/models/product.model';
 import { CartItem } from '../models/cartItem.model';
 import { Subject } from 'rxjs';
+import { ProductCommunicatorService } from '../../products/services/product-communicator.service';
 
 @Injectable({
     providedIn: 'root'
@@ -10,63 +11,66 @@ import { Subject } from 'rxjs';
 
 export class CartService {
 
-    books: CartItem[] = [];
+    cartItems: CartItem[] = [];
     totalQuantity = 0;
     totalSum = 0;
     public productsSubject = new Subject<CartItem[]>();
 
-    constructor() {
-        this.productsSubject.next(this.books);
+    constructor(public communicator: ProductCommunicatorService) {
     }
 
     private updateProducts() {
-        this.totalQuantity = this.books.reduce(
+        this.totalQuantity = this.cartItems.reduce(
             (prev, cur) => prev + cur.count,
             0
         );
-        this.totalSum = this.books.reduce(
+        this.totalSum = this.cartItems.reduce(
             (prev, cur) => prev + cur.getTotal(),
             0
         );
-        this.productsSubject.next(this.books);
+        this.productsSubject.next(this.cartItems);
     }
 
-    getCartItems(): Array<CartItem> {
-        return this.books;
+    getCartItems(): CartItem[] {
+        return this.cartItems;
     }
 
     addCartItem(item: Product): void {
-        let cartProduct = this.books.find(
+        let cartItem = this.cartItems.find(
             (o) => o.product.id === item.id
         );
-        if (cartProduct) {
-            cartProduct.count++;
+        if (cartItem) {
+            cartItem.count++;
         } else {
-            cartProduct = new CartItem(item, 1);
-            this.books.push(cartProduct);
+            cartItem = new CartItem(item, 1);
+            this.cartItems.push(cartItem);
         }
-        cartProduct.product.availableCount--;
+        cartItem.product.availableCount--;
+        this.communicator.publishData(item);
         this.updateProducts();
     }
 
-    removeProduct(product: CartItem) {
-        product.product.availableCount += product.count;
-        this.books.splice(
-            this.books.findIndex((o) => o === product),
+    removeCartItem(item: CartItem) {
+        item.product.availableCount += item.count;
+        this.cartItems.splice(
+            this.cartItems.findIndex((o) => o === item),
             1
         );
+        this.communicator.publishData(item.product);
         this.updateProducts();
     }
 
-    increaseAmount(product: CartItem) {
-        product.count++;
-        product.product.availableCount--;
+    increaseAmount(item: CartItem) {
+        item.count++;
+        item.product.availableCount--;
+        this.communicator.publishData(item.product);
         this.updateProducts();
     }
 
-    decreaseAmount(product: CartItem) {
-        product.count--;
-        product.product.availableCount++;
+    decreaseAmount(item: CartItem) {
+        item.count--;
+        item.product.availableCount++;
+        this.communicator.publishData(item.product);
         this.updateProducts();
     }
 }
