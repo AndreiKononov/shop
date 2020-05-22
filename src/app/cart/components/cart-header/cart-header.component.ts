@@ -10,16 +10,20 @@ import { CartItem } from '../../models/cartItem.model';
 })
 export class CartHeaderComponent implements OnInit, AfterViewInit {
 
-    products: Array<CartItem>;
+    cartItems: CartItem[];
     @ViewChild('appTitle') titleTag: ElementRef<HTMLInputElement>;
 
     constructor(
-        private productService: CartService,
+        private cartService: CartService,
     ) {
     }
 
     ngOnInit(): void {
-        this.products = this.productService.getCartItems();
+        this.cartItems = this.cartService.getCartItems();
+    }
+
+    getTotalQuantity(): number {
+        return this.cartService.totalQuantity;
     }
 
     ngAfterViewInit() {

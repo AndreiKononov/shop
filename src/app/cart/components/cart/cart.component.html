@@ -1,5 +1,5 @@
 <app-cart-header></app-cart-header>
-<div *ngIf="products.length; else emptyCart" class="cart">
+<div *ngIf="cartItems.length; else emptyCart" class="cart">
     <h6>You selected:</h6>
     <app-cart-list></app-cart-list>
 </div>

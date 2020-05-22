@@ -1,29 +1,21 @@
-import { Input, Directive, HostBinding, HostListener, ElementRef, AfterViewInit } from '@angular/core';
+import { Directive, HostBinding, HostListener } from '@angular/core';
 
 @Directive({
     selector: '[appHoverEffect]',
 })
-export class HoverDirective implements AfterViewInit {
+export class HoverDirective {
+    @HostBinding('class')
+    attrClass: string;
 
-    @Input('appHoverEffect') backgroundColor: string;
+    constructor() {}
 
-    private initialColor: string;
-
-    constructor(private element: ElementRef<HTMLElement>) {}
-
-    @HostBinding('style.backgroundColor') elementBackground: string;
-
-    ngAfterViewInit(): void {
-        this.initialColor = this.element.nativeElement.style.backgroundColor;
+    @HostListener('mouseenter', ['$event'])
+    enter() {
+        this.attrClass = 'beigeColor';
     }
 
-    @HostListener('mouseover')
-    onMouseOver() {
-        this.elementBackground = this.backgroundColor;
-    }
-
-    @HostListener('mouseleave')
-    onMouseLeave() {
-        this.elementBackground = this.initialColor;
+    @HostListener('mouseleave', ['$event'])
+    leave() {
+        this.attrClass = '';
     }
 }
