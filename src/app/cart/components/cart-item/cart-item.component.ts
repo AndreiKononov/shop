@@ -14,6 +14,9 @@ export class CartItemComponent {
     @Input() cartItem: CartItem;
 
     constructor(
+        // не надо сюда внедрять сервис.
+        // компонент не владеет данными, он их получает и не должен менять.
+        // пусть генерит аутпут для родителя, а то меняет, тем более, что в родитель уже внедряется эта зависимость
         public cartService: CartService,
     ) {}
 
