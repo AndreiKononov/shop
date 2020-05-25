@@ -68,7 +68,7 @@ export class CartService {
     }
 
     decreaseAmount(item: CartItem) {
-        item.count--;
+        item.count--; // в минус не уйдет?
         item.product.availableCount++;
         this.communicator.publishData(item.product);
         this.updateProducts();

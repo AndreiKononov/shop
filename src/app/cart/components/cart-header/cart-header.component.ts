@@ -11,7 +11,7 @@ import { CartItem } from '../../models/cartItem.model';
 export class CartHeaderComponent implements OnInit, AfterViewInit {
 
     cartItems: CartItem[];
-    @ViewChild('appTitle') titleTag: ElementRef<HTMLInputElement>;
+    @ViewChild('appTitle') titleTag: ElementRef<HTMLInputElement>; // Почему такой тип, разве это инпут? HTMLElement или HTMLHeadingElement
 
     constructor(
         private cartService: CartService,
