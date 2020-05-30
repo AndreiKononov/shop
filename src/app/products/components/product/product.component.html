@@ -1,18 +1,28 @@
-<img src="././app/shared/images/Clean%20Code.jpg" alt="Book's cover">
-<ul>
-    <li>Name: {{product.name}}</li>
-    <li>Author: {{product.author}}</li>
-    <li>Description: {{product.description}}</li>
-    <li>Price: {{product.price}} $</li>
-    <li>Category: {{product.category}}</li>
-    <li [ngClass]="{ 'not-available': !product.availableCount }">
-        Available for purchasing: {{ product.availableCount }}
-    </li>
-</ul>
-<button
-    (click)="onBuyProduct()"
-    [disabled]="!product.isAvailable()"
-    [ngStyle]="{'font-weight': product.availableCount ? 'bold' : 'initial' }">
-    Buy
-</button>
+<div class="flex-container">
+    <div  class="flex-item color1">
+        <img [src]="product.setImgSrc()" alt="Book's cover">
+    </div>
+    <div class="flex-item color1">
+        <ul>
+            <li><i>Name:</i> {{product.name}}</li>
+            <li><i>Author:</i> {{product.author}}</li>
+            <li><i>Description:</i> {{product.description}}</li>
+            <li><i>Price:</i> {{product.price}} $</li>
+            <li><i>Category:</i> {{product.category}}</li>
+            <li [ngClass]="{ 'not-available': !product.availableCount }">
+                <i [ngClass]="{ 'not-available': !product.availableCount }">
+                    Available for purchasing:
+                </i> {{ product.availableCount }}
+            </li>
+        </ul>
+        <button
+            (click)="onBuyProduct()"
+            [disabled]="!product.isAvailable()"
+            [ngStyle]="{'font-weight': product.availableCount ? 'bold' : 'initial' }">
+            Buy
+        </button>
+    </div>
+</div>
 <hr>
+
+

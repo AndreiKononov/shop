@@ -12,6 +12,10 @@ export class Product {
     ) {
     }
 
+    public setImgSrc(): string {
+        return `../../.././../assets/images/${this.category}.jpg`;
+    }
+
     public isAvailable(): boolean {
         return this.availableCount > 0;
     }

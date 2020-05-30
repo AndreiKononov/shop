@@ -8,6 +8,7 @@ Was added a handler onBuy() to log a message to the console (Task 1.5)
 Was used the directive *ngFor to display a list of products (Task 1.6)
 ## Created CartComponent, CartService 
 Was used the directive *ngIf to display an amount of selected products (Task 1.7)
+## Fixed issues from comments
 
 #Task 2. Components
 ## Organized a module structure of app
@@ -20,3 +21,4 @@ CartItem changes background colour by a mouse hover (created a directive 'HoverD
 Using @ViewChild decorator (NOTICE: used in cart-header component, not in app component as described in task 2.11 )
 ## Calculation
 Added total cost calculation
+## Fixed issues from comments
