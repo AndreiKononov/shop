@@ -1,7 +1,11 @@
 <ol>
     <li *ngFor="let cartItem of cartItems;" appHoverEffect>
         <app-cart-item
-            [cartItem]="cartItem">
+            [cartItem]="cartItem"
+            (increaseQuantity)="onIncreaseQuantity($event)"
+            (decreaseQuantity)="onDecreaseQuantity($event)"
+            (removeCartItem)="onRemoveCartItem($event)"
+        >
         </app-cart-item>
         <hr>
     </li>

@@ -23,4 +23,16 @@ export class CartListComponent implements OnInit {
     getTotalSum(): number {
         return this.cartService.totalSum;
     }
+
+    onRemoveCartItem(cartItem: CartItem): void {
+        this.cartService.removeCartItem(cartItem);
+    }
+
+    onIncreaseQuantity(cartItem: CartItem): void {
+        this.cartService.increaseAmount(cartItem);
+    }
+    onDecreaseQuantity(cartItem: CartItem): void {
+        this.cartService.decreaseAmount(cartItem);
+    }
+
 }
