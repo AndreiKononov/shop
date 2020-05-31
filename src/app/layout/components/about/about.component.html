@@ -1,0 +1,22 @@
+<hr>
+<div class="container">
+    <h5 appZoom="80" [style.cursor]="'pointer'" [style.color]="'red'">CLICK ME!</h5>
+    <div>
+        <h3>LocalStorageService Demo:</h3>
+        <pre>{{ localStorageService.getItem("TEST") }}</pre>
+    </div>
+    <div>
+        <h3>ConfigOptionsService Demo:</h3>
+        <pre>Login: {{ configOptionsService.getData().login }}</pre>
+        <pre>Email: {{ configOptionsService.getData().email }}</pre>
+    </div>
+    <div>
+        <h3>ConstantsService Demo:</h3>
+        <pre>App: {{ config.App }}</pre>
+        <pre>Version: {{ config.Ver }}</pre>
+    </div>
+    <div>
+        <h3>Generator Demo</h3>
+        <pre>{{ generator }}</pre>
+    </div>
+</div>

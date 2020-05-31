@@ -11,7 +11,7 @@ import { ProductCommunicatorService } from '../../products/services/product-comm
 
 export class CartService {
 
-    cartItems: CartItem[] = [];
+    cartProducts: CartItem[] = [];
     totalQuantity = 0;
     totalSum = 0;
     public productsSubject = new Subject<CartItem[]>();
@@ -19,58 +19,58 @@ export class CartService {
     constructor(public communicator: ProductCommunicatorService) {
     }
 
-    private updateProducts() {
-        this.totalQuantity = this.cartItems.reduce(
+    private updateCartData() {
+        this.totalQuantity = this.cartProducts.reduce(
             (prev, cur) => prev + cur.count,
             0
         );
-        this.totalSum = this.cartItems.reduce(
+        this.totalSum = this.cartProducts.reduce(
             (prev, cur) => prev + cur.getTotal(),
             0
         );
-        this.productsSubject.next(this.cartItems);
+        this.productsSubject.next(this.cartProducts);
     }
 
     getCartItems(): CartItem[] {
-        return this.cartItems;
+        return this.cartProducts;
     }
 
-    addCartItem(item: Product): void {
-        let cartItem = this.cartItems.find(
+    addProduct(item: Product): void {
+        let cartItem = this.cartProducts.find(
             (o) => o.product.id === item.id
         );
         if (cartItem) {
             cartItem.count++;
         } else {
             cartItem = new CartItem(item, 1);
-            this.cartItems.push(cartItem);
+            this.cartProducts.push(cartItem);
         }
         cartItem.product.availableCount--;
         this.communicator.publishData(item);
-        this.updateProducts();
+        this.updateCartData();
     }
 
-    removeCartItem(item: CartItem) {
+    removeProduct(item: CartItem) {
         item.product.availableCount += item.count;
-        this.cartItems.splice(
-            this.cartItems.findIndex((o) => o === item),
+        this.cartProducts.splice(
+            this.cartProducts.findIndex((o) => o === item),
             1
         );
         this.communicator.publishData(item.product);
-        this.updateProducts();
+        this.updateCartData();
     }
 
-    increaseAmount(item: CartItem) {
+    increaseQuantity(item: CartItem) {
         item.count++;
         item.product.availableCount--;
         this.communicator.publishData(item.product);
-        this.updateProducts();
+        this.updateCartData();
     }
 
-    decreaseAmount(item: CartItem) {
+    decreaseQuantity(item: CartItem) {
         item.count--;
         item.product.availableCount++;
         this.communicator.publishData(item.product);
-        this.updateProducts();
+        this.updateCartData();
     }
 }

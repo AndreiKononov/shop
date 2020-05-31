@@ -4,14 +4,14 @@
 <button
     (click)="onIncreaseQuantity()"
     [disabled]="!cartItem.product.availableCount">
-        add
+        Add
 </button>
 <button
     (click)="onDecreaseQuantity()"
     [disabled]="!cartItem.count">
-        remove
+        Remove
 </button>
 <button
     (click)="onRemoveCartItem()">
-    clear
+    Clear
 </button>
