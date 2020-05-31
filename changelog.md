@@ -18,7 +18,16 @@ Were used @Input(), @Output() decorators, OnPush strategy as well
 The button "Buy" is disabled if product unavailable (used  ngClass/ngStyle directives).
 CartItem changes background colour by a mouse hover (created a directive 'HoverDirective', used @HostBinding, @HostListener decorators)
 ## Updated app title
-Using @ViewChild decorator (NOTICE: used in cart-header component, not in app component as described in task 2.11 )
+Using @ViewChild decorator (NOTICE: used in cart-header component, not in app component as described in task 2.11)
 ## Calculation
 Added total cost calculation
 ## Fixed issues from comments
+
+#Task 3. Services and DI
+## Refactored Cart Service
+## Services
+Created LocalStorageService, ConfigOptionsService, ConstantsService, GeneratorService as described in tasks 3.2 - 3.5
+## Directives
+Created Zoom directive as described in task 3.7
+## Components
+Created About component as described in task 3.6

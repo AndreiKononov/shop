@@ -9,10 +9,11 @@ import { ProductModule } from './products/product.module';
 import { CartModule } from './cart/cart.module';
 import { OrdersModule } from './orders/orders.module';
 import { SharedModule } from './shared/shared.module';
+import { LayoutModule } from './layout/layout.module';
 
 
 @NgModule({
-    declarations: [ AppComponent ],
+    declarations: [ AppComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
@@ -21,6 +22,7 @@ import { SharedModule } from './shared/shared.module';
         CartModule,
         OrdersModule,
         SharedModule,
+        LayoutModule,
     ],
     providers: [],
     bootstrap: [ AppComponent ]

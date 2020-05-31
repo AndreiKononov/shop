@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { HoverDirective } from './directives/hover.directive';
-
+import { HoverDirective, ZoomDirective } from './directives';
 
 @NgModule({
-    declarations: [ HoverDirective ],
+    declarations: [ HoverDirective, ZoomDirective ],
     imports: [ CommonModule ],
-    exports: [ HoverDirective ],
+    exports: [ HoverDirective, ZoomDirective ],
 })
 export class SharedModule {
 }
