@@ -18,6 +18,7 @@ import { AppInfo } from '../../../core/models/AppInfo/app-info.model';
         { provide: LocalStorageService, useClass: LocalStorageService },
         { provide: ConfigOptionsService, useClass: ConfigOptionsService },
         { provide: APP_INFO, useValue: ConstantsService },
+        // хотелось бы, чтобы у функции была зависимость на сервис и тут появился бы массив deps
         { provide: GeneratedString, useFactory: GeneratorFactory(20) },
     ]
 })
