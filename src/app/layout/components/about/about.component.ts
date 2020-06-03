@@ -7,6 +7,7 @@ import {
     GeneratorFactory,
     GeneratedString,
     LocalStorageService,
+    GeneratorService
 } from 'src/app/core/services';
 import { AppInfo } from '../../../core/models/AppInfo/app-info.model';
 
@@ -15,10 +16,11 @@ import { AppInfo } from '../../../core/models/AppInfo/app-info.model';
     templateUrl: './about.component.html',
     styleUrls: ['./about.component.scss'],
     providers: [
+        GeneratorService,
         { provide: LocalStorageService, useClass: LocalStorageService },
         { provide: ConfigOptionsService, useClass: ConfigOptionsService },
         { provide: APP_INFO, useValue: ConstantsService },
-        { provide: GeneratedString, useFactory: GeneratorFactory(20) },
+        { provide: GeneratedString, useFactory: GeneratorFactory(20), deps: [GeneratorService] },
     ]
 })
 
@@ -28,7 +30,7 @@ export class AboutComponent implements OnInit {
         @Optional() public localStorageService: LocalStorageService,
         @Optional() public configOptionsService: ConfigOptionsService,
         @Inject(APP_INFO) @Optional() public config: AppInfo,
-        @Inject(GeneratedString) public generator: any[]
+        @Inject(GeneratedString) public generator: any[],
     ) {
     }
 
