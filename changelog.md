@@ -1,11 +1,11 @@
 #Task 1. Introduction
 ## Added top bar component
 ## Created FirstComponent 
-It initialised with properties and used in AppComponent (Task 1.3, 1.4)
+- It initialised with properties and used in AppComponent (Task 1.3, 1.4)
 ## Created ProductComponent
-Was added a handler onBuy() to log a message to the console (Task 1.5)
+- Was added a handler onBuy() to log a message to the console (Task 1.5)
 ## Created ProductsService, ProductsModel, ProductListComponent
-Was used the directive *ngFor to display a list of products (Task 1.6)
+- Was used the directive *ngFor to display a list of products (Task 1.6)
 ## Created CartComponent, CartService 
 Was used the directive *ngIf to display an amount of selected products (Task 1.7)
 ## Fixed issues from comments
@@ -31,3 +31,9 @@ Created LocalStorageService, ConfigOptionsService, ConstantsService, GeneratorSe
 Created Zoom directive as described in task 3.7
 ## Components
 Created About component as described in task 3.6
+## Fixed issues from comments
+
+# Task 4. Pipes
+Were added build-in pipes such as uppercase, titlecase, currency
+Method getProducts() was changed to return Promise, async pipe was added to ProductListComponent;
+Was created OrderByPipe to sort cart items by name, quantity and price.

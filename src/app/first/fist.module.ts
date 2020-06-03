@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { SharedModule } from '../shared/shared.module';
 
 import { FirstComponent } from './components';
 
 @NgModule({
     declarations: [ FirstComponent ],
-    imports: [ CommonModule ],
+    imports: [ SharedModule ],
     exports: [ FirstComponent ],
 })
 export class FistModule {

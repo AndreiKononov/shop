@@ -13,7 +13,8 @@ export class ProductService {
     constructor() {
     }
 
-    getProducts(): Product[] {
-        return this.books;
+    getProducts(): Promise<Product[]> {
+        return (new Promise(resolve => resolve(this.books)))
+            .catch(error => error) as Promise<Product[]>;
     }
 }

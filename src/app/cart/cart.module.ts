@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule} from '@angular/forms';
 
 import {
     CartComponent,
@@ -11,7 +11,7 @@ import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
     declarations: [ CartComponent, CartItemComponent, CartListComponent, CartHeaderComponent ],
-    imports: [ CommonModule, SharedModule ],
+    imports: [ SharedModule, ReactiveFormsModule ],
     exports: [ CartComponent ],
 })
 export class CartModule {

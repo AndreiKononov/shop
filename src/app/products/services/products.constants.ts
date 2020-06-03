@@ -20,17 +20,17 @@ export const mockedBooks: Product[] = [
         ' release of Java 6. This Jolt award-winning classic has now been thoroughly updated to take full advantage ' +
         'of the latest language and library features. The support in modern Java for multiple paradigms increases' +
         ' the need for specific best-practices advice, and this book delivers.',
-        10,
+        15,
         Category.Java,
         2),
     new Product(
         3,
-        'Clean Code: A Handbook of Agile Software Craftsmanship',
+        'Clean Code: A Handbook of Agile SC',
         'Robert C. Martin',
         'Even bad code can function. But if code isn’t clean, it can bring a development organization to its knees.' +
         ' Every year, countless hours and significant resources are lost because of poorly written code. ' +
         'But it doesn’t have to be that way.',
-        10,
+        20,
         Category.Other,
         1),
     new Product(

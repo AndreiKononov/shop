@@ -7,8 +7,8 @@
             <li><i>Name:</i> {{product.name}}</li>
             <li><i>Author:</i> {{product.author}}</li>
             <li><i>Description:</i> {{product.description}}</li>
-            <li><i>Price:</i> {{product.price}} $</li>
-            <li><i>Category:</i> {{product.category}}</li>
+            <li><i>Price:</i> {{product.price | currency}} </li>
+            <li><i>Category:</i> {{product.category | uppercase}}</li>
             <li [ngClass]="{ 'not-available': !product.availableCount }">
                 <i [ngClass]="{ 'not-available': !product.availableCount }">
                     Available for purchasing:
