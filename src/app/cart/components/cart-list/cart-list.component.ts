@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 import { CartService } from '../../services/cart.service';
 import { CartItem } from '../../models/cartItem.model';
@@ -11,6 +12,9 @@ import { CartItem } from '../../models/cartItem.model';
 
 export class CartListComponent implements OnInit {
     cartItems: CartItem[];
+    sortForm = new FormControl();
+    sortList: string[] = ['name', 'quantity', 'price'];
+    ascendingOrder = false;
 
     constructor(
         private cartService: CartService,
@@ -34,5 +38,4 @@ export class CartListComponent implements OnInit {
     onDecreaseQuantity(cartItem: CartItem): void {
         this.cartService.decreaseQuantity(cartItem);
     }
-
 }

@@ -11,7 +11,7 @@ import { CartService } from '../../../cart/services/cart.service';
 })
 
 export class ProductListComponent implements OnInit {
-    products: Array<Product>;
+    products: Promise<Product[]>;
 
     constructor(
         private productService: ProductService,
