@@ -10,19 +10,21 @@ import { CartModule } from './cart/cart.module';
 import { OrdersModule } from './orders/orders.module';
 import { SharedModule } from './shared/shared.module';
 import { LayoutModule } from './layout/layout.module';
+import { AdminModule } from './admin/admin.module';
 
 
 @NgModule({
     declarations: [ AppComponent],
     imports: [
         BrowserModule,
-        AppRoutingModule,
         FistModule,
         ProductModule,
         CartModule,
         OrdersModule,
         SharedModule,
         LayoutModule,
+        AdminModule,
+        AppRoutingModule,
     ],
     providers: [],
     bootstrap: [ AppComponent ]

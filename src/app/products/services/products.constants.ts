@@ -3,7 +3,7 @@ import { Category } from '../enums/category';
 
 export const mockedBooks: Product[] = [
     new Product(
-        1,
+        '1',
         'JavaScript: The Definitive Guide',
         'David Flanagan',
         'Since 1996, JavaScript: The Definitive Guide has been the bible for JavaScript ' +
@@ -13,7 +13,7 @@ export const mockedBooks: Product[] = [
         Category.JavaScript,
         3),
     new Product(
-        2,
+        '2',
         'Effective Java',
         'Joshua Bloch',
         'Java has changed dramatically since the previous edition of Effective Java was published shortly after the' +
@@ -24,7 +24,7 @@ export const mockedBooks: Product[] = [
         Category.Java,
         2),
     new Product(
-        3,
+        '3',
         'Clean Code: A Handbook of Agile SC',
         'Robert C. Martin',
         'Even bad code can function. But if code isn’t clean, it can bring a development organization to its knees.' +
@@ -34,7 +34,7 @@ export const mockedBooks: Product[] = [
         Category.Other,
         1),
     new Product(
-        4,
+        '4',
         'CSS: The Missing Manual',
         'David Sawyer McFarland',
         'CSS lets you create professional-looking websites, but learning its finer points can be tricky—even for' +
@@ -46,7 +46,7 @@ export const mockedBooks: Product[] = [
         Category.CSS,
         0),
     new Product(
-        5,
+        '5',
         'Digital Fortress',
         'Dan Brown',
         'When the NSA\'s invincible code-breaking machine encounters a mysterious code it cannot break, ' +

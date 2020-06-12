@@ -1,6 +1,18 @@
-<app-product
+<!--<app-product
     *ngFor="let product of products | async"
     [product]="product"
     (buyProduct)="onBuy($event)">
 </app-product>
-
+--->
+<div class="items-container" [ngClass]="{ editable: editable }">
+    <div *ngFor="let product of products | async" class="item">
+        <app-product
+            [product]="product"
+            [editable]="editable"
+            (buyProduct)="onBuyProduct($event)"
+            (editProduct)="onEditProduct($event)"
+            (deleteProduct)="onDeleteProduct($event)"
+            (goToProduct)="onGoToProduct($event)"
+        ></app-product>
+    </div>
+</div>

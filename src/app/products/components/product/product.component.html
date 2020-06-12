@@ -1,4 +1,4 @@
-<div class="flex-container">
+<!--<div class="flex-container">
     <div  class="flex-item color1">
         <img [src]="product.setImgSrc()" alt="Book's cover">
     </div>
@@ -24,5 +24,52 @@
     </div>
 </div>
 <hr>
+-->
+<div class="product">
+    <div>
+        <div>
+            {{ product.category | uppercase }}</div
+        >
+        <div
+            ><a mat-button color="primary" (click)="onGoToProduct()">{{
+                product.name
+            }}</a></div
+        >
+    </div>
+    <div>
+        <div>Price: {{ product.price | currency }}</div>
+        <div>{{ product.description }}</div>
+        <div>Available Count: {{ product.availableCount }}</div>
+    </div>
 
+    <div *ngIf="editable; else buyBlock">
+        <button (click)="onEditProduct()" color="primary" mat-raised-button>
+            Edit
+        </button>
+        <button (click)="onDeleteProduct()" color="accent" mat-raised-button>
+            Delete
+        </button>
+    </div>
+
+    <ng-template #buyBlock>
+        <div>
+            <button
+                (click)="onBuyProduct()"
+                [disabled]="product.availableCount === 0"
+                color="primary"
+                mat-raised-button
+            >
+                Buy
+            </button>
+            <span
+                class="count"
+                [ngClass]="{
+                    last: product.availableCount === 1,
+                    'not-available': !product.availableCount
+                }"
+                >{{ product.availableCount }} left</span
+            >
+        </div>
+    </ng-template>
+</div>
 

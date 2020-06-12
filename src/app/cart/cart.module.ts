@@ -8,11 +8,16 @@ import {
     CartListComponent
 } from './components';
 import { SharedModule } from '../shared/shared.module';
+import { CartRoutingModule } from './components/cart/cart-routing.module';
+import { LocalStorageService } from '../core/services';
 
 @NgModule({
     declarations: [ CartComponent, CartItemComponent, CartListComponent, CartHeaderComponent ],
     imports: [ SharedModule, ReactiveFormsModule ],
-    exports: [ CartComponent ],
+    exports: [ CartComponent, CartListComponent, CartRoutingModule ],
+    providers: [
+        { provide: LocalStorageService, useClass: LocalStorageService },
+    ],
 })
 export class CartModule {
 }
