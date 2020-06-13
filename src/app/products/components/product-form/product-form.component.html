@@ -6,17 +6,13 @@
         <div>
             <label>Name</label>
             <input
-                matInput
                 type="text"
                 [(ngModel)]="product.name"
                 name="name"
                 required
             />
             <button
-                mat-button
                 *ngIf="product.name"
-                matSuffix
-                mat-icon-button
                 aria-label="Clear"
                 (click)="product.name = ''"
             >
@@ -26,20 +22,35 @@
     </div>
 
     <div class="form-row">
+            <div>
+                <label>Author</label>
+                <input
+                    type="text"
+                    [(ngModel)]="product.author"
+                    name="author"
+                    required
+                />
+                <button
+                    *ngIf="product.author"
+                    aria-label="Clear"
+                    (click)="product.author = ''"
+                >
+                    <i>close</i>
+                </button>
+            </div>
+    </div>
+
+    <div class="form-row">
         <div>
             <label>Description</label>
             <input
-                matInput
                 type="text"
                 [(ngModel)]="product.description"
                 name="description"
                 required
             />
             <button
-                mat-button
                 *ngIf="product.description"
-                matSuffix
-                mat-icon-button
                 aria-label="Clear"
                 (click)="product.description = ''"
             >
@@ -52,7 +63,6 @@
         <div>
             <label>Price</label>
             <input
-                matInput
                 type="number"
                 min="0"
                 [(ngModel)]="product.price"
@@ -85,7 +95,6 @@
         <div>
             <label>Available Count</label>
             <input
-                matInput
                 type="number"
                 min="0"
                 [(ngModel)]="product.availableCount"
@@ -97,7 +106,6 @@
 
     <div class="form-row">
         <button
-            mat-raised-button
             color="warn"
             type="submit"
             form="product-form"
@@ -106,7 +114,6 @@
             Save
         </button>
         <button
-            mat-raised-button
             color="primary"
             type="button"
             (click)="onGoBack()"

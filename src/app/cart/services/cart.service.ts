@@ -80,6 +80,7 @@ export class CartService {
     buyAllProducts(): void {
         this.cartProducts = [];
         this.localStorageService.setItem('CART_PRODUCTS', this.cartProducts);
+        this.totalQuantity = 0;
     }
 
     hasCartProducts(): boolean {

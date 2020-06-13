@@ -13,7 +13,13 @@ export class Product {
     }
 
     public setImgSrc(): string {
-        return `../../.././../assets/images/${this.category}.jpg`;
+        if (this.category) {
+            return `../../.././../assets/images/${this.category}.jpg`;
+        } else {
+            return `../../.././../assets/images/Default.jpg`;
+        }
+        // return `../../.././../assets/images/${this.category}.jpg` || '../../.././../assets/images/Default.jpg';
+        // return `../../.././../assets/images/Default.jpg`;
     }
 
     public isAvailable(): boolean {
