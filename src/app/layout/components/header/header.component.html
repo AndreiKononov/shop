@@ -1,7 +1,7 @@
-<a class="one">
+<a>
     <h1 #appTitle routerLink="/about"></h1>
 </a>
-<nav class="two">
+<nav>
     <ul class="nav">
         <li>
             <a  class="button fancy-button"
@@ -41,7 +41,7 @@
     </ul>
 
 </nav>
-<a class="three button fancy-button" routerLink="/cart">
+<a class="cart button fancy-button" routerLink="/cart">
     <i class="material-icons">shopping_cart</i>
     My Cart
     <span *ngIf="getTotalQuantity(); else emptyCart" class="badge badge-pill badge-success">

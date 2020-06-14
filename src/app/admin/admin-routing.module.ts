@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { CanDeactivateGuard } from 'src/app/core';
 import { ProductFormComponent } from '../products/components';
-import { ProductResolveGuard } from '../products/guards';
+import { ProductResolveGuard } from './guards';
 import {
     AdminComponent,
     AdminDashboardComponent,

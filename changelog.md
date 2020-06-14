@@ -37,3 +37,14 @@
 - Were added build-in pipes such as uppercase, titlecase, currency
 - Method getProducts() was changed to return Promise, async pipe was added to ProductListComponent;
 - Was created OrderByPipe to sort cart items by name, quantity and price.
+
+# Task 5. Routing
+- Were implemented routes:
+   - ProductRoutingModule:
+       /products-list
+       /product/:productID
+   
+       
+
+- 
+-

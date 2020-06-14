@@ -7,7 +7,7 @@ import { ProcessOrderComponent, OrderItemComponent, OrderListComponent } from '.
 @NgModule({
     declarations: [ ProcessOrderComponent, OrderItemComponent, OrderListComponent ],
     imports: [ SharedModule, OrdersRoutingModule ],
-    exports: [OrderListComponent, OrdersRoutingModule],
+    exports: [ OrderListComponent, OrdersRoutingModule ],
 })
 export class OrdersModule {
 

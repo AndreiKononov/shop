@@ -110,8 +110,6 @@ label {
     }
 }
 
-/* Cart Bar */
-
 app-header {
     position: fixed;
     width: 100%;
@@ -121,6 +119,4 @@ app-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    //justify-self: center;
-    //align-items: center;
 }

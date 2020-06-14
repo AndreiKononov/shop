@@ -6,8 +6,8 @@ import { OrdersModule } from 'src/app/orders/orders.module';
 import { AdminRoutingModule } from './admin-routing.module';
 
 @NgModule({
-    declarations: [AdminRoutingModule.components],
-    imports: [SharedModule, ProductModule, OrdersModule, AdminRoutingModule],
-    exports: [AdminRoutingModule],
+    declarations: [ AdminRoutingModule.components ],
+    imports: [ SharedModule, ProductModule, OrdersModule, AdminRoutingModule ],
+    exports: [ AdminRoutingModule ],
 })
 export class AdminModule {}

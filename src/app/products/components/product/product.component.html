@@ -1,10 +1,14 @@
 <div class="flex-container">
     <div *ngIf="product.bookImg; else imageDefault" class="flex-item color1">
-        <img [src]="product.bookImg" alt="Book's cover">
+        <a (click)="onGoToProduct()">
+            <img [src]="product.bookImg" alt="Book's cover">
+        </a>
     </div>
     <ng-template #imageDefault>
         <div class="flex-item color1">
-            <img src="https://picsum.photos/381/499" alt="Book's cover">
+            <a (click)="onGoToProduct()">
+                <img src="https://picsum.photos/381/499" alt="Book's cover">
+            </a>
         </div>
     </ng-template>
     <div class="flex-item color1">

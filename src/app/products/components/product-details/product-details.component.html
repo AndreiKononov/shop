@@ -1,22 +1,26 @@
 <div class="product-details">
     <div>
-        <h3>Name:</h3>
+        <h4>Name:</h4>
         <p>{{ product.name }}</p>
     </div>
     <div>
-        <h3>Category:</h3>
-        <p>{{ product.category | uppercase }}</p>
+        <h4>Author:</h4>
+        <p>{{ product.author }}</p>
     </div>
     <div>
-        <h3>Price:</h3>
-        <p>{{ product.price | currency }}</p>
-    </div>
-    <div>
-        <h3>Description:</h3>
+        <h4>Description:</h4>
         <p>{{ product.description }}</p>
     </div>
     <div>
-        <h3>Available Count:</h3>
+        <h4>Price:</h4>
+        <p>{{ product.price | currency }}</p>
+    </div>
+    <div>
+        <h4>Category:</h4>
+        <p>{{ product.category | uppercase }}</p>
+    </div>
+    <div>
+        <h4>Available Count:</h4>
         <p>{{ product.availableCount }}</p>
     </div>
 </div>

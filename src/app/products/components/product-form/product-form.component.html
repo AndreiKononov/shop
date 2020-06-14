@@ -16,7 +16,7 @@
                 aria-label="Clear"
                 (click)="product.name = ''"
             >
-                <i>close</i>
+                Clear
             </button>
         </div>
     </div>
@@ -35,7 +35,7 @@
                     aria-label="Clear"
                     (click)="product.author = ''"
                 >
-                    <i>close</i>
+                    Clear
                 </button>
             </div>
     </div>
@@ -54,7 +54,7 @@
                 aria-label="Clear"
                 (click)="product.description = ''"
             >
-                <i>close</i>
+                Clear
             </button>
         </div>
     </div>
@@ -104,9 +104,8 @@
         </div>
     </div>
 
-    <div class="form-row">
+    <div class="form-row-2">
         <button
-            color="warn"
             type="submit"
             form="product-form"
             [disabled]="form.invalid"
@@ -114,7 +113,6 @@
             Save
         </button>
         <button
-            color="primary"
             type="button"
             (click)="onGoBack()"
         >
