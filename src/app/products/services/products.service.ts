@@ -12,16 +12,12 @@ const dataObservable: Observable<Product[]> = of(mockedBooks);
 })
 
 export class ProductService {
-    // books: Product[] = mockedBooks;
+
     products$: Observable<Product[]> = dataObservable;
 
     constructor() {
     }
 
-    // getProducts(): Promise<Product[]> {
-    //     return (new Promise(resolve => resolve(this.products$)))
-    //         .catch(error => error) as Promise<Product[]>;
-    // }
     getProducts(): Observable<Product[]> {
         return this.products$;
     }

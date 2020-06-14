@@ -1,38 +1,47 @@
-<a>
+<a class="one">
     <h1 #appTitle routerLink="/about"></h1>
 </a>
-<nav>
+<nav class="two">
     <ul class="nav">
         <li>
-            <a
+            <a  class="button fancy-button"
                 routerLink="/products-list"
-                routerLinkActive="active"
-            >Products</a
-            >
+                routerLinkActive="active">
+                    Products
+            </a>
         </li>
         <li>
-            <a routerLink="/cart" routerLinkActive="active"
-            >Cart</a
-            >
+            <a  class="button fancy-button"
+                routerLink="/cart"
+                routerLinkActive="active">
+                    Cart
+            </a>
         </li>
         <li>
-            <a routerLink="/order" routerLinkActive="active"
-            >Order</a
-            >
+            <a  class="button fancy-button"
+                routerLink="/order"
+                routerLinkActive="active">
+                    Order
+            </a>
         </li>
         <li>
-            <a routerLink="/admin" routerLinkActive="active"
-            >Admin</a
-            >
+            <a  class="button fancy-button"
+                routerLink="/admin"
+                routerLinkActive="active">
+                    Admin
+            </a>
         </li>
         <li>
-            <a routerLink="/login" routerLinkActive="active"
-            >Login</a
-            >
+            <a  class="button fancy-button"
+                routerLink="/login"
+                routerLinkActive="active">
+                    Login
+            </a>
         </li>
     </ul>
+
 </nav>
-<a class="button fancy-button">
+<a class="three button fancy-button" routerLink="/cart">
     <i class="material-icons">shopping_cart</i>
     My Cart
     <span *ngIf="getTotalQuantity(); else emptyCart" class="badge badge-pill badge-success">

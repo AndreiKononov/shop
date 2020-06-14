@@ -8,13 +8,17 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+    overflow-y: scroll;
+}
+
 body {
     margin: 0;
 }
 
 .container {
     padding-top: 90px;
-    padding-left: 200px;
+    padding-left: 210px;
     text-align: justify;
 }
 
@@ -117,9 +121,6 @@ app-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
-}
-
-app-cart {
-    position: fixed;
+    //justify-self: center;
+    //align-items: center;
 }

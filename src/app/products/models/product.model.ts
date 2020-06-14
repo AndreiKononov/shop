@@ -12,15 +12,7 @@ export class Product {
     ) {
     }
 
-    public setImgSrc(): string {
-        if (this.category) {
-            return `../../.././../assets/images/${this.category}.jpg`;
-        } else {
-            return `../../.././../assets/images/Default.jpg`;
-        }
-        // return `../../.././../assets/images/${this.category}.jpg` || '../../.././../assets/images/Default.jpg';
-        // return `../../.././../assets/images/Default.jpg`;
-    }
+    public bookImg = `../../.././../assets/images/${this.category}.jpg`;
 
     public isAvailable(): boolean {
         return this.availableCount > 0;

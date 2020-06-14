@@ -1,7 +1,12 @@
 <div class="flex-container">
-    <div class="flex-item color1">
-        <img [src]="product.setImgSrc()" alt="Book's cover">
+    <div *ngIf="product.bookImg; else imageDefault" class="flex-item color1">
+        <img [src]="product.bookImg" alt="Book's cover">
     </div>
+    <ng-template #imageDefault>
+        <div class="flex-item color1">
+            <img src="https://picsum.photos/381/499" alt="Book's cover">
+        </div>
+    </ng-template>
     <div class="flex-item color1">
         <ul>
             <li><i>Name:</i> {{product.name}}</li>
