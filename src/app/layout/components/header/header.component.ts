@@ -1,14 +1,14 @@
 import { Component, ElementRef, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 
-import { CartService } from '../../services/cart.service';
-import { CartItem } from '../../models/cartItem.model';
+import { CartService } from '../../../cart/services/cart.service';
+import { CartItem } from '../../../cart/models/cartItem.model';
 
 @Component({
-  selector: 'app-cart-header',
-  templateUrl: './cart-header.component.html',
-  styleUrls: ['./cart-header.component.scss']
+    selector: 'app-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.scss']
 })
-export class CartHeaderComponent implements OnInit, AfterViewInit {
+export class HeaderComponent implements OnInit, AfterViewInit {
 
     cartItems: CartItem[];
     @ViewChild('appTitle') titleTag: ElementRef<HTMLElement>;

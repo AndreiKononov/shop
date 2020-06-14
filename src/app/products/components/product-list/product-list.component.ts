@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 import { Product } from '../../models/product.model';
 import { ProductService } from '../../services/products.service';
@@ -7,23 +9,37 @@ import { CartService } from '../../../cart/services/cart.service';
 @Component({
     selector: 'app-product-list',
     templateUrl: './product-list.component.html',
-    styleUrls: ['./product-list.component.scss']
+    styleUrls: ['./product-list.component.scss'],
 })
-
 export class ProductListComponent implements OnInit {
-    products: Promise<Product[]>;
+    products: Observable<Product[]>;
+    @Input() editable: boolean;
 
     constructor(
-        private productService: ProductService,
-        private cartService: CartService,
-    ) {
-    }
+        public productService: ProductService,
+        public cartService: CartService,
+        public router: Router
+    ) {}
 
     ngOnInit(): void {
         this.products = this.productService.getProducts();
     }
 
-    onBuy(product: Product): void {
+    onBuyProduct(product: Product): void {
         this.cartService.addProduct(product);
+    }
+
+    onGoToProduct(product: Product): void {
+        const link = ['/product', product.id];
+        this.router.navigate(link);
+    }
+
+    onEditProduct(product: Product): void {
+        const link = ['/admin/products/edit', product.id];
+        this.router.navigate(link);
+    }
+
+    onDeleteProduct(product: Product): void {
+        this.productService.deleteProduct(product);
     }
 }

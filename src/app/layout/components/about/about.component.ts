@@ -9,7 +9,7 @@ import {
     LocalStorageService,
     GeneratorService
 } from 'src/app/core/services';
-import { AppInfo } from '../../../core/models/AppInfo/app-info.model';
+import { AppInfo } from '../../../core/models';
 
 @Component({
     selector: 'app-about',

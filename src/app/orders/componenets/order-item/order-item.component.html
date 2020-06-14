@@ -1,0 +1,12 @@
+<div>
+    <div>
+        <div>Order Date: {{ order.date | date }}</div>
+        <div>Order ID: {{ order.id }}</div>
+    </div>
+    <div>
+        <div>Order Status: {{ order.status }}</div>
+        <div>Total Quantity: {{ order.totalQuantity }}</div>
+        <div>Total Price: {{ order.total | currency }}</div>
+    </div>
+</div>
+<hr>

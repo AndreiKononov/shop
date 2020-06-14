@@ -4,6 +4,7 @@ import { Product } from '../../products/models/product.model';
 import { CartItem } from '../models/cartItem.model';
 import { Subject } from 'rxjs';
 import { ProductCommunicatorService } from '../../products/services/product-communicator.service';
+import { LocalStorageService } from '../../core/services';
 
 @Injectable({
     providedIn: 'root'
@@ -16,7 +17,10 @@ export class CartService {
     totalSum = 0;
     public productsSubject = new Subject<CartItem[]>();
 
-    constructor(public communicator: ProductCommunicatorService) {
+    constructor(
+        public communicator: ProductCommunicatorService,
+        public localStorageService: LocalStorageService
+    ) {
     }
 
     private updateCartData() {
@@ -72,5 +76,14 @@ export class CartService {
         item.product.availableCount++;
         this.communicator.publishData(item.product);
         this.updateCartData();
+    }
+    buyAllProducts(): void {
+        this.cartProducts = [];
+        this.localStorageService.setItem('CART_PRODUCTS', this.cartProducts);
+        this.totalQuantity = 0;
+    }
+
+    hasCartProducts(): boolean {
+        return this.cartProducts.length > 0;
     }
 }

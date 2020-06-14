@@ -1,0 +1,53 @@
+<a>
+    <h1 #appTitle routerLink="/about"></h1>
+</a>
+<nav>
+    <ul class="nav">
+        <li>
+            <a  class="button fancy-button"
+                routerLink="/products-list"
+                routerLinkActive="active">
+                    Products
+            </a>
+        </li>
+        <li>
+            <a  class="button fancy-button"
+                routerLink="/cart"
+                routerLinkActive="active">
+                    Cart
+            </a>
+        </li>
+        <li>
+            <a  class="button fancy-button"
+                routerLink="/order"
+                routerLinkActive="active">
+                    Order
+            </a>
+        </li>
+        <li>
+            <a  class="button fancy-button"
+                routerLink="/admin"
+                routerLinkActive="active">
+                    Admin
+            </a>
+        </li>
+        <li>
+            <a  class="button fancy-button"
+                routerLink="/login"
+                routerLinkActive="active">
+                    Login
+            </a>
+        </li>
+    </ul>
+
+</nav>
+<a class="cart button fancy-button" routerLink="/cart">
+    <i class="material-icons">shopping_cart</i>
+    My Cart
+    <span *ngIf="getTotalQuantity(); else emptyCart" class="badge badge-pill badge-success">
+        {{ getTotalQuantity() }}
+    </span>
+</a>
+<ng-template #emptyCart>
+    <span class="badge badge-pill badge-success">is empty</span>
+</ng-template>

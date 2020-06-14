@@ -2,7 +2,7 @@ import { Category } from '../enums/category';
 
 export class Product {
     constructor(
-        public id: number,
+        public id: string,
         public name: string,
         public author: string,
         public description: string,
@@ -12,9 +12,7 @@ export class Product {
     ) {
     }
 
-    public setImgSrc(): string {
-        return `../../.././../assets/images/${this.category}.jpg`;
-    }
+    public bookImg = `../../.././../assets/images/${this.category}.jpg`;
 
     public isAvailable(): boolean {
         return this.availableCount > 0;

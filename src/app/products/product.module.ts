@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 
 import { SharedModule } from '../shared/shared.module';
-import { ProductComponent, ProductListComponent } from './components';
+
+import { ProductRoutingModule} from './products-routing.module';
 
 @NgModule({
-    declarations: [ ProductComponent, ProductListComponent ],
+    declarations: [ ProductRoutingModule.components ],
     imports: [ SharedModule ],
-    exports: [ ProductListComponent ],
+    exports: [ ProductRoutingModule, ProductRoutingModule.components ],
 })
 export class ProductModule {
 }

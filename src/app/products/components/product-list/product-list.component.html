@@ -1,6 +1,9 @@
 <app-product
     *ngFor="let product of products | async"
     [product]="product"
-    (buyProduct)="onBuy($event)">
-</app-product>
-
+    [editable]="editable"
+    (buyProduct)="onBuyProduct($event)"
+    (goToProduct)="onGoToProduct($event)"
+    (editProduct)="onEditProduct($event)"
+    (deleteProduct)="onDeleteProduct($event)"
+></app-product>

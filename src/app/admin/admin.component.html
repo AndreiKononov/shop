@@ -1,0 +1,32 @@
+<div>
+    <div>
+        <h3 class="title">Admin</h3>
+        <nav>
+            <ul class="nav nav-tabs">
+                <li>
+                    <a class="button fancy-button"
+                        routerLink="./"
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                    >Dashboard</a
+                    >
+                </li>
+                <li>
+                    <a class="button fancy-button"
+                        routerLink="./products"
+                        routerLinkActive="active"
+                    >Manage Products</a
+                    >
+                </li>
+                <li>
+                    <a class="button fancy-button"
+                        routerLink="./orders"
+                        routerLinkActive="active"
+                    >Manage Orders</a
+                    >
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<router-outlet></router-outlet>
