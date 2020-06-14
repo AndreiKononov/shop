@@ -35,16 +35,23 @@
 
 # Task 4. Pipes
 - Were added build-in pipes such as uppercase, titlecase, currency
-- Method getProducts() was changed to return Promise, async pipe was added to ProductListComponent;
-- Was created OrderByPipe to sort cart items by name, quantity and price.
+- Method getProducts() was changed to return Promise, async pipe was added to ProductListComponent
+- Was created OrderByPipe to sort cart items by name, quantity and price
 
 # Task 5. Routing
 - Were implemented routes:
    - ProductRoutingModule:
        /products-list
        /product/:productID
-   
-       
-
-- 
--
+   - CartRoutingModule:
+       /cart
+   - OrdersRoutingModule:
+       /order
+   - AdminRoutingModule:
+       /admin + canActivateGuard
+       /admin/products
+       /admin/product/add
+       /admin/product/edit:productID + resolve guard
+       /admin/orders
+- Used random image as a cover for a newly created book
+- To store products from the cart was used localstorage
