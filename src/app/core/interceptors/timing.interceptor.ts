@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class TimingInterceptor implements HttpInterceptor {
@@ -20,5 +20,4 @@ export class TimingInterceptor implements HttpInterceptor {
             return next.handle(req);
         }
     }
-
 }

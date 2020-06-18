@@ -2,33 +2,29 @@
 
 * {
     font-family: 'Roboto', Arial, sans-serif;
-    color: #616161;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0
 }
 
 html {
     overflow-y: scroll;
 }
 
-body {
-    margin: 0;
-}
-
-h3.dark-theme {
-    color: white;
-}
-
 .container {
+    &.dark-theme {
+        color: white;
+        background-color: #616161;
+    }
     padding-top: 90px;
     padding-left: 210px;
     text-align: justify;
-
-    &.dark-theme {
-        background-color: #616161;
-        color: white;
-    }
 }
 
 //li {

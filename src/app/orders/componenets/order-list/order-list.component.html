@@ -1,4 +1,4 @@
-<div>
+<div class="orders">
     <div *ngIf="orders | async; else noOrders">
         <div class="items-container">
             <div *ngFor="let order of orders | async" class="item">

@@ -1,4 +1,3 @@
-
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { AppSettings } from 'src/app/core/services';
 import { CartService } from '../../../cart/services/cart.service';

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'app-admin',
@@ -7,7 +7,6 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class AdminComponent implements OnInit {
 
-    @Input() isDarkTheme: boolean;
     constructor() { }
 
     ngOnInit(): void {

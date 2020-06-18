@@ -1,4 +1,4 @@
-import { AppTheme } from '../AppTheme/app-theme.model';
+import { AppTheme } from '..';
 
 export interface AppSettingsModel {
     THEME: AppTheme;

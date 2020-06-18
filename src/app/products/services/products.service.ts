@@ -6,7 +6,7 @@ import { catchError, retry,  publish, refCount, share,  concatMap } from 'rxjs/o
 
 import { Product } from '../models/product.model';
 import { ProductsAPI } from '../../core/services/products/products.config';
-import { mockedBooks } from './products.constants';
+// import { mockedBooks } from './products.constants';
 
 // const dataObservable: Observable<Product[]> = of(mockedBooks);
 
