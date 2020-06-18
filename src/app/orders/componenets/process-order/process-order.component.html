@@ -1,12 +1,11 @@
-<div class="container">
+<div class="container order">
     <button
         *ngIf="cartService.hasCartProducts(); else cartEmpty"
-        color="primary"
         (click)="onMakeOrder()"
     >
         Make Order
     </button>
 </div>
-    <ng-template #cartEmpty>
-        <h6 class="cart">Your Cart is Empty!</h6>
-    </ng-template>
+<ng-template #cartEmpty>
+    <h6 class="cart">Your Cart is Empty!</h6>
+</ng-template>

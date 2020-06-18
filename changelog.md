@@ -55,3 +55,9 @@
        /admin/orders
 - Used random image as a cover for a newly created book
 - To store products from the cart was used localstorage
+
+# Task 6. HttpClient
+  - Products and orders receive from json-server
+  - Products receive using of Observable, orders - Promise
+  - Was added TimingInterceptor
+  - Was added AppSettings service

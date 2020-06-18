@@ -16,12 +16,10 @@ export class AdminDashboardComponent implements OnInit {
     constructor(private route: ActivatedRoute) {}
 
     ngOnInit(): void {
-        // Capture the session ID if available
         this.sessionId = this.route.queryParamMap.pipe(
             map((params) => params.get('sessionId') || 'None')
         );
 
-        // Capture the fragment if available
         this.token = this.route.fragment.pipe(
             map((fragment) => fragment || 'None')
         );

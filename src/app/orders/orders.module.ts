@@ -9,6 +9,6 @@ import { ProcessOrderComponent, OrderItemComponent, OrderListComponent } from '.
     imports: [ SharedModule, OrdersRoutingModule ],
     exports: [ OrderListComponent, OrdersRoutingModule ],
 })
-export class OrdersModule {
 
+export class OrdersModule {
 }

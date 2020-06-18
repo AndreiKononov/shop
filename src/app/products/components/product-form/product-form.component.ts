@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, UrlTree } from '@angular/router';
 import { pluck } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { Location } from '@angular/common';
 
-import { CanComponentDeactivate} from '../../../core/interfaces';
+import { CanComponentDeactivate } from '../../../core/interfaces';
 import { Product } from '../../models/product.model';
 import { Category } from '../../enums/category';
 import { DialogService } from 'src/app/core';
@@ -14,17 +15,20 @@ import { ProductModule } from '../../product.module';
     templateUrl: './product-form.component.html',
     styleUrls: ['./product-form.component.scss'],
 })
-export class ProductFormComponent implements OnInit, CanComponentDeactivate {
+export class ProductFormComponent implements OnInit, CanComponentDeactivate, OnDestroy {
     product: Product;
     originalProduct: ProductModule;
     Category = Category;
     selectedCategory: string;
 
+    private sub: Subscription;
+
     constructor(
         private productService: ProductService,
         private route: ActivatedRoute,
         private router: Router,
-        private dialogService: DialogService
+        private dialogService: DialogService,
+        private location: Location
     ) {}
 
     ngOnInit(): void {
@@ -34,6 +38,12 @@ export class ProductFormComponent implements OnInit, CanComponentDeactivate {
                 this.product = { ...product } as Product;
                 this.originalProduct = { ...product } as Product;
             });
+    }
+
+    ngOnDestroy(): void {
+        if (this.sub) {
+            this.sub.unsubscribe();
+        }
     }
 
     canDeactivate():
@@ -54,30 +64,25 @@ export class ProductFormComponent implements OnInit, CanComponentDeactivate {
     }
 
     onSave() {
-        const product = { ...this.product } as Product;
-        product.category = Category[product.category] || product.category;
-        if (product.id) {
-            this.productService.updateProduct(product);
-        } else {
-            this.productService.createProduct(product);
-        }
-        this.originalProduct = { ...this.product };
-        this.onGoBack();
-    }
+        const method = this.product.id ? 'updateProduct' : 'createProduct';
 
-    onDelete() {
-        const product = { ...this.product } as Product;
-
-        if (product.id) {
-            this.productService.deleteProduct(product);
-        }
+        const observer = {
+            next: (savedProduct: Product) => {
+                this.originalProduct = { ...savedProduct };
+                this.onGoBack();
+            },
+            error: (err: any) => console.log(err),
+        };
+        this.sub = this.productService[method](this.product).subscribe(
+            observer
+        );
     }
 
     onGoBack(): void {
-        this.router.navigate(['/admin/products']);
+        this.location.back();
     }
 
     compareCategories(o1: string, o2: string): boolean {
-        return Category[o1] === o2;
+        return o1 === o2;
     }
 }

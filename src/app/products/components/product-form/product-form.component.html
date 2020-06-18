@@ -1,4 +1,4 @@
-<div>
+<div><div>
     <div>Product Form</div>
 </div>
 <form (ngSubmit)="onSave()" id="product-form" #form="ngForm">
@@ -83,7 +83,7 @@
             >
                 <option
                     *ngFor="let category of Category | keyvalue"
-                    [value]="category.key"
+                    [value]="category.value"
                 >
                     {{ category.value }}
                 </option>
@@ -120,3 +120,4 @@
         </button>
     </div>
 </form>
+</div>
