@@ -1,32 +1,45 @@
-import { Component, ElementRef, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { AppSettings } from 'src/app/core/services';
 import { CartService } from '../../../cart/services/cart.service';
-import { CartItem } from '../../../cart/models/cartItem.model';
+
+import { AppSettingsModel, AppTheme } from 'src/app/core/models';
 
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
-    styleUrls: ['./header.component.scss']
+    styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit, AfterViewInit {
+export class HeaderComponent implements OnInit {
+    isDarkTheme: boolean;
 
-    cartItems: CartItem[];
     @ViewChild('appTitle') titleTag: ElementRef<HTMLElement>;
 
     constructor(
+        private appSettings: AppSettings,
         private cartService: CartService,
-    ) {
-    }
+    ) { }
 
     ngOnInit(): void {
-        this.cartItems = this.cartService.getCartItems();
+        this.setIsDarkTheme(this.appSettings.settings);
+        this.appSettings.channel$.subscribe(this.setIsDarkTheme.bind(this));
     }
 
-    getTotalQuantity(): number {
+        getTotalQuantity(): number {
         return this.cartService.totalQuantity;
     }
 
     ngAfterViewInit() {
         this.titleTag.nativeElement.innerText = 'My shop';
+    }
+
+    setIsDarkTheme(settings: AppSettingsModel): void {
+        this.isDarkTheme = settings.THEME === 'DARK';
+    }
+
+
+    toggleDarkTheme(): void {
+        this.isDarkTheme = !this.isDarkTheme;
+        this.appSettings.setTheme(this.isDarkTheme ? AppTheme.DARK : AppTheme.LIGHT);
     }
 }

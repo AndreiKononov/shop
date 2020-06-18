@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { AppSettings } from '../../../core/services';
+import { AppSettingsModel } from '../../../core/models';
 
 @Component({
     selector: 'app-admin-dashboard',
@@ -12,18 +14,25 @@ import { map } from 'rxjs/operators';
 export class AdminDashboardComponent implements OnInit {
     sessionId: Observable<string>;
     token: Observable<string>;
+    isDarkTheme: boolean;
 
-    constructor(private route: ActivatedRoute) {}
+    constructor(private route: ActivatedRoute, private appSettings: AppSettings) {}
 
     ngOnInit(): void {
-        // Capture the session ID if available
+
+        this.setIsDarkTheme(this.appSettings.settings);
+        this.appSettings.channel$.subscribe(this.setIsDarkTheme.bind(this));
+
         this.sessionId = this.route.queryParamMap.pipe(
             map((params) => params.get('sessionId') || 'None')
         );
 
-        // Capture the fragment if available
         this.token = this.route.fragment.pipe(
             map((fragment) => fragment || 'None')
         );
+    }
+
+    setIsDarkTheme(settings: AppSettingsModel): void {
+        this.isDarkTheme = settings.THEME === 'DARK';
     }
 }

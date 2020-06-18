@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 
@@ -11,10 +12,12 @@ import { OrdersModule } from './orders/orders.module';
 import { SharedModule } from './shared/shared.module';
 import { LayoutModule } from './layout/layout.module';
 import { AdminModule } from './admin/admin.module';
+import { TimingInterceptor } from 'src/app/core/interceptors';
 
 @NgModule({
     declarations: [ AppComponent],
     imports: [
+        HttpClientModule,
         BrowserModule,
         FistModule,
         ProductModule,
@@ -25,7 +28,11 @@ import { AdminModule } from './admin/admin.module';
         AdminModule,
         AppRoutingModule,
     ],
-    providers: [],
+    providers: [{
+        provide: HTTP_INTERCEPTORS,
+        useClass: TimingInterceptor,
+        multi: true
+    }],
     bootstrap: [ AppComponent ]
 })
 export class AppModule {

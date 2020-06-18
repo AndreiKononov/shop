@@ -11,6 +11,8 @@ import {
 import { Subscription } from 'rxjs';
 import { Product} from '../../models/product.model';
 import { ProductCommunicatorService } from '../../services/product-communicator.service';
+import { AppSettings } from '../../../core/services';
+import { AppSettingsModel } from '../../../core/models';
 
 @Component({
     selector: 'app-product',
@@ -26,10 +28,12 @@ export class ProductComponent implements OnInit, OnDestroy {
     @Output() editProduct: EventEmitter<Product> = new EventEmitter<Product>();
     @Output() deleteProduct: EventEmitter<Product> = new EventEmitter<Product>();
     private sub: Subscription;
+    isDarkTheme: boolean;
 
     constructor(
         public communicator: ProductCommunicatorService,
-        private cd: ChangeDetectorRef
+        private cd: ChangeDetectorRef,
+        private appSettings: AppSettings,
     ) {}
 
     ngOnInit(): void {
@@ -38,6 +42,12 @@ export class ProductComponent implements OnInit, OnDestroy {
                 this.cd.detectChanges();
             }
         });
+        this.setIsDarkTheme(this.appSettings.settings);
+        this.appSettings.channel$.subscribe(this.setIsDarkTheme.bind(this));
+    }
+
+    setIsDarkTheme(settings: AppSettingsModel): void {
+        this.isDarkTheme = settings.THEME === 'DARK';
     }
 
     ngOnDestroy() {

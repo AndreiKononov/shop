@@ -40,6 +40,6 @@ export class ProductListComponent implements OnInit {
     }
 
     onDeleteProduct(product: Product): void {
-        this.productService.deleteProduct(product);
+        this.products = this.productService.deleteProduct(product);
     }
 }

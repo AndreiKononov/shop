@@ -1,0 +1,224 @@
+{
+  "products": [
+    {
+      "price": 1,
+      "description": "Even bad code can function. But if code isn’t clean, it can bring a development organization to its knees. Every year, countless hours and significant resources are lost because of poorly written code. But it doesn’t have to be that way.",
+      "author": "tats",
+      "name": "Name 2",
+      "category": "Fiction",
+      "availableCount": 3,
+      "id": 1
+    },
+    {
+      "name": "Татьяна Кононова",
+      "author": "Robert C. Martin",
+      "description": "Even bad code can function. But if code isn’t clean, it can bring a development organization to its knees. Every year, countless hours and significant resources are lost because of poorly written code. But it doesn’t have to be that way.",
+      "price": 1,
+      "category": "Java",
+      "availableCount": 1,
+      "id": 2
+    }
+  ],
+  "orders": [
+    {
+      "id": "1592337089107",
+      "date": "2020-06-16T22:47:15.258Z",
+      "status": "CLOSED",
+      "cartProducts": {
+        "0": {
+          "product": {
+            "id": "1",
+            "name": "Name 1",
+            "description": "Description 1",
+            "price": 10,
+            "availableCount": 4,
+            "category": "Test Category 1"
+          },
+          "count": 2
+        }
+      },
+      "totalQuantity": 2,
+      "total": 20
+    },
+    {
+      "id": "1592337098178",
+      "date": "2020-06-06T19:43:06.772Z",
+      "status": "OPEN",
+      "cartProducts": {
+        "0": {
+          "product": {
+            "id": "1",
+            "name": "Name 1",
+            "description": "Description 1",
+            "price": 10,
+            "availableCount": 4,
+            "category": "Test Category 1"
+          },
+          "count": 1
+        },
+        "1": {
+          "product": {
+            "id": "2",
+            "name": "Name 2",
+            "description": "Description 2",
+            "price": 20,
+            "availableCount": 1,
+            "category": "Test Category 2"
+          },
+          "count": 1
+        }
+      },
+      "totalQuantity": 2,
+      "total": 30
+    },
+    {
+      "id": "1592337103177",
+      "date": "2020-06-10T18:26:05.584Z",
+      "status": "OPEN",
+      "cartProducts": {
+        "0": {
+          "product": {
+            "id": "1",
+            "name": "Name 1",
+            "description": "Description 1ll",
+            "price": 10,
+            "availableCount": 4,
+            "category": "Test Category 1"
+          },
+          "count": 1
+        }
+      },
+      "totalQuantity": 1,
+      "total": 10
+    },
+    {
+      "id": "1592428538609",
+      "date": "2020-06-17T21:15:38.609Z",
+      "status": "OPEN",
+      "cartProducts": {
+        "0": {
+          "product": {
+            "id": "1",
+            "name": "JavaScript: The Definitive Guide",
+            "author": "David Flanagan",
+            "description": "Since 1996, JavaScript: The Definitive Guide has been the bible for JavaScript ' +\n        'programmers—a programmer\\'s guide and comprehensive reference to the core language ' +\n        'and to the client side JavaScript APIs defined by web browsers. ",
+            "price": 10,
+            "category": "JavaScript",
+            "availableCount": 1
+          },
+          "count": 2
+        },
+        "1": {
+          "product": {
+            "id": "2",
+            "name": "Effective Java",
+            "author": "Joshua Bloch",
+            "description": "Java has changed dramatically since the previous edition of Effective Java was published shortly after the' +\n        ' release of Java 6. This Jolt award-winning classic has now been thoroughly updated to take full advantage ' +\n        'of the latest language and library features. The support in modern Java for multiple paradigms increases' +\n        ' the need for specific best-practices advice, and this book delivers.",
+            "price": 15,
+            "category": "Java",
+            "availableCount": 0
+          },
+          "count": 2
+        }
+      },
+      "totalQuantity": 4,
+      "total": 50
+    },
+    {
+      "id": "1592428602664",
+      "date": "2020-06-17T21:16:42.664Z",
+      "status": "OPEN",
+      "cartProducts": {
+        "0": {
+          "product": {
+            "name": "Татьяна Кононова",
+            "author": "tats",
+            "description": "jj",
+            "price": 1,
+            "category": "Fiction",
+            "availableCount": 0,
+            "id": 1
+          },
+          "count": 1
+        }
+      },
+      "totalQuantity": 1,
+      "total": 1
+    },
+    {
+      "id": "1592432722290",
+      "date": "2020-06-17T22:25:22.290Z",
+      "status": "OPEN",
+      "cartProducts": {
+        "0": {
+          "product": {
+            "name": "Татьяна Кононова",
+            "author": "tats",
+            "description": "jj",
+            "price": 1,
+            "category": "Fiction",
+            "availableCount": 0,
+            "id": 1
+          },
+          "count": 1
+        }
+      },
+      "totalQuantity": 1,
+      "total": 1
+    },
+    {
+      "id": "1592433106213",
+      "date": "2020-06-17T22:31:46.213Z",
+      "status": "OPEN",
+      "cartProducts": {
+        "0": {
+          "product": {
+            "name": "Татьяна Кононова",
+            "author": "tats",
+            "description": "jj",
+            "price": 1,
+            "category": "Fiction",
+            "availableCount": 0,
+            "id": 1
+          },
+          "count": 1
+        }
+      },
+      "totalQuantity": 1,
+      "total": 1
+    },
+    {
+      "id": "1592483239294",
+      "date": "2020-06-18T12:27:19.294Z",
+      "status": "OPEN",
+      "cartProducts": {
+        "0": {
+          "product": {
+            "price": 1,
+            "description": "Even bad code can function. But if code isn’t clean, it can bring a development organization to its knees. Every year, countless hours and significant resources are lost because of poorly written code. But it doesn’t have to be that way.",
+            "author": "tats",
+            "name": "Name 2",
+            "category": "Fiction",
+            "availableCount": 2,
+            "id": 1
+          },
+          "count": 1
+        },
+        "1": {
+          "product": {
+            "name": "Татьяна Кононова",
+            "author": "Robert C. Martin",
+            "description": "Even bad code can function. But if code isn’t clean, it can bring a development organization to its knees. Every year, countless hours and significant resources are lost because of poorly written code. But it doesn’t have to be that way.",
+            "price": 1,
+            "category": "Java",
+            "availableCount": 0,
+            "id": 2
+          },
+          "count": 1
+        }
+      },
+      "totalQuantity": 2,
+      "total": 2
+    }
+  ]
+}

@@ -16,10 +16,19 @@ body {
     margin: 0;
 }
 
+h3.dark-theme {
+    color: white;
+}
+
 .container {
     padding-top: 90px;
     padding-left: 210px;
     text-align: justify;
+
+    &.dark-theme {
+        background-color: #616161;
+        color: white;
+    }
 }
 
 //li {
@@ -50,6 +59,10 @@ a {
     cursor: pointer;
     color: #1976d2;
     text-decoration: none;
+
+    &.dark-theme {
+        color: red;
+    }
 
     &:hover {
         opacity: 0.8;
@@ -104,6 +117,11 @@ label {
     background-color: white;
     color: #1976d2;
 
+    &.dark-theme {
+        background-color: lightsteelblue;
+        color: red;
+    }
+
     i.material-icons {
         color: #1976d2;
         padding-right: 4px;
@@ -119,4 +137,8 @@ app-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
+    &.dark-theme {
+        background-color: rebeccapurple;
+    }
 }
