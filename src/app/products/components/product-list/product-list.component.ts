@@ -2,6 +2,10 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
+// @Ngrx
+import { Store, select } from '@ngrx/store';
+import { AppState,ProductsState } from '../../../core/@ngrx';
+
 import { Product } from '../../models/product.model';
 import { ProductService } from '../../services/products.service';
 import { CartService } from '../../../cart/services/cart.service';
@@ -13,16 +17,20 @@ import { CartService } from '../../../cart/services/cart.service';
 })
 export class ProductListComponent implements OnInit {
     products: Observable<Product[]>;
+    productState$: Observable<ProductsState>;
     @Input() editable: boolean;
 
     constructor(
         public productService: ProductService,
         public cartService: CartService,
-        public router: Router
+        public router: Router,
+        private store: Store<AppState>
     ) {}
 
     ngOnInit(): void {
-        this.products = this.productService.getProducts();
+        console.log('We have a store! ', this.store);
+        // this.products = this.productService.getProducts();
+        this.productState$ = this.store.pipe(select('products'));
     }
 
     onBuyProduct(product: Product): void {
