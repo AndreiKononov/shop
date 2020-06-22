@@ -8,3 +8,4 @@
     (editProduct)="onEditProduct($event)"
     (deleteProduct)="onDeleteProduct($event)"
 ></app-product>
+<p *ngIf="(productState$ | async).error as value">{{value}}</p>

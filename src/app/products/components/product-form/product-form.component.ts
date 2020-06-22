@@ -1,11 +1,17 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, UrlTree } from '@angular/router';
-import { pluck } from 'rxjs/operators';
-import { Observable, Subscription } from 'rxjs';
 import { Location } from '@angular/common';
 
+import { pluck, takeUntil } from 'rxjs/operators';
+import { Observable, Subscription, Subject } from 'rxjs';
+
+// @NgRx
+import { Store, select } from '@ngrx/store';
+import { AppState, ProductsState } from '../../../core/@ngrx';
+import * as ProductActions from './../../../core/@ngrx/products/products.actions';
+
 import { CanComponentDeactivate } from '../../../core/interfaces';
-import { Product } from '../../models/product.model';
+import { Product, ProductModel } from '../../models/product.model';
 import { Category } from '../../enums/category';
 import { DialogService } from 'src/app/core';
 import { ProductService } from '../../services/products.service';
@@ -20,6 +26,7 @@ export class ProductFormComponent implements OnInit, CanComponentDeactivate, OnD
     originalProduct: ProductModule;
     Category = Category;
     selectedCategory: string;
+    private componentDestroyed$: Subject<void> = new Subject<void>();
 
     private sub: Subscription;
 
@@ -28,7 +35,8 @@ export class ProductFormComponent implements OnInit, CanComponentDeactivate, OnD
         private route: ActivatedRoute,
         private router: Router,
         private dialogService: DialogService,
-        private location: Location
+        private location: Location,
+        private store: Store<AppState>
     ) {}
 
     ngOnInit(): void {
@@ -41,9 +49,8 @@ export class ProductFormComponent implements OnInit, CanComponentDeactivate, OnD
     }
 
     ngOnDestroy(): void {
-        if (this.sub) {
-            this.sub.unsubscribe();
-        }
+        this.componentDestroyed$.next();
+        this.componentDestroyed$.complete();
     }
 
     canDeactivate():
@@ -64,18 +71,12 @@ export class ProductFormComponent implements OnInit, CanComponentDeactivate, OnD
     }
 
     onSave() {
-        const method = this.product.id ? 'updateProduct' : 'createProduct';
-
-        const observer = {
-            next: (savedProduct: Product) => {
-                this.originalProduct = { ...savedProduct };
-                this.onGoBack();
-            },
-            error: (err: any) => console.log(err),
-        };
-        this.sub = this.productService[method](this.product).subscribe(
-            observer
-        );
+        const product = { ...this.product } as ProductModel;
+        if (product.id) {
+            this.store.dispatch(ProductActions.updateProduct({ product }));
+        } else {
+            this.store.dispatch(ProductActions.createProduct({ product }));
+        }
     }
 
     onGoBack(): void {
