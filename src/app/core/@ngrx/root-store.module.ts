@@ -6,6 +6,8 @@ import { StoreModule } from '@ngrx/store';
 import { ProductsStoreModule } from './products/products-store.module';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule, RouterState } from '@ngrx/router-store';
+import { routerReducers, CustomSerializer } from './router';
 
 import { environment } from '../../../environments/environment';
 
@@ -14,7 +16,7 @@ import { environment } from '../../../environments/environment';
     declarations: [],
     imports: [
         CommonModule,
-        StoreModule.forRoot({}, {
+        StoreModule.forRoot(routerReducers, {
             // All checks will automatically be disabled in production builds
             runtimeChecks: {
                 strictStateImmutability: true, // default value is true
@@ -23,6 +25,11 @@ import { environment } from '../../../environments/environment';
                 strictActionSerializability: false, // default value is false
                 strictActionWithinNgZone: true // default value is false
             }
+        }),
+        StoreRouterConnectingModule.forRoot({
+            stateKey: 'router',
+            // routerState: RouterState.Minimal
+            serializer: CustomSerializer // has a priority over routerState
         }),
         EffectsModule.forRoot([]),
         // Instrumentation must be imported after importing StoreModule (config is optional)

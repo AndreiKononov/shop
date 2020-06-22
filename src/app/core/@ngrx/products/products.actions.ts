@@ -16,21 +16,6 @@ export const getProductsError = createAction(
 
 // ====
 
-export const getProduct = createAction(
-    '[Add/Edit Product Page] GET_PRODUCT',
-    props<{ productID: number }>()
-);
-export const getProductSuccess = createAction(
-    '[Get Product Effect] GET_PRODUCT_SUCCESS',
-    props<{ product: ProductModel }>()
-);
-export const getProductError = createAction(
-    '[Get Product Effect] GET_PRODUCT_ERROR',
-    props<{ error: Error | string }>()
-);
-
-// ====
-
 export const updateProduct = createAction(
     '[Product Form Page] UPDATE_PRODUCT',
     props<{ product: ProductModel }>()

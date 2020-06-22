@@ -3,7 +3,6 @@ import { Product, ProductModel } from '../../../products/models/product.model';
 
 export interface ProductsState {
     data: ReadonlyArray<ProductModel>;
-    selectedProduct: Readonly<ProductModel>;
     readonly loading: boolean;
     readonly loaded: boolean;
     readonly error: Error | string;
@@ -43,7 +42,6 @@ export const initialProductsState: ProductsState = {
         //     Category.Other,
         //     1),
     ],
-    selectedProduct: null,
     loading: false,
     loaded: false,
     error: null

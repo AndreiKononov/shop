@@ -7,7 +7,7 @@ import { Observable, Subscription, Subject } from 'rxjs';
 
 // @NgRx
 import { Store, select } from '@ngrx/store';
-import { AppState, ProductsState } from '../../../core/@ngrx';
+import { AppState, selectSelectedProductByUrl } from '../../../core/@ngrx';
 import * as ProductActions from './../../../core/@ngrx/products/products.actions';
 
 import { CanComponentDeactivate } from '../../../core/interfaces';
