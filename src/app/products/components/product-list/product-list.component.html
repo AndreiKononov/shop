@@ -1,7 +1,7 @@
 <!--    *ngFor="let product of products | async"-->
 <!--*ngFor="let product of (products$ | async)">-->
 <app-product
-    *ngFor="let product of (productState$ | async).data"
+    *ngFor="let product of (products$ | async)"
     [product]="product"
     [editable]="editable"
     (buyProduct)="onBuyProduct($event)"

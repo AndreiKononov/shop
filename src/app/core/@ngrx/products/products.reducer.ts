@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
-import { initialProductsState, ProductsState } from './products.state';
+import { initialProductsState, ProductsState, adapter } from './products.state';
 import * as ProductsActions from './products.actions';
 
 const reducer = createReducer(
@@ -14,24 +14,16 @@ const reducer = createReducer(
     }),
     on(ProductsActions.getProductsSuccess, (state, { products }) => {
         console.log('GET_PRODUCTS_SUCCESS action being handled!');
-        const data = [...products];
+        return adapter.setAll(products, { ...state, loading: false, loaded: true });
+    }),
+    on(ProductsActions.getProductsError, (state, { error }) => {
+        console.log('GET_PRODUCTS_ERROR action being handled!');
         return {
             ...state,
-            data,
             loading: false,
-            loaded: true,
+            loaded: false,
+            error
         };
-    }),
-    on(
-        ProductsActions.getProductsError,
-        (state, { error }) => {
-            console.log('GET_PRODUCTS_ERROR action being handled!');
-            return {
-                ...state,
-                loading: false,
-                loaded: false,
-                error
-            };
     }),
 
     on(ProductsActions.updateProduct, state => {
@@ -40,13 +32,7 @@ const reducer = createReducer(
     }),
     on(ProductsActions.updateProductSuccess, (state, { product }) => {
         console.log('UPDATE_PRODUCT_SUCCESS action being handled!');
-        const data = [...state.data];
-        const index = data.findIndex(t => t.id === product.id);
-        data[index] = { ...product };
-        return {
-            ...state,
-            data
-        };
+        return adapter.updateOne({ id: product.id, changes: product }, state);
     }),
 
     on(ProductsActions.createProduct, state => {
@@ -55,11 +41,7 @@ const reducer = createReducer(
     }),
     on(ProductsActions.createProductSuccess, (state, { product }) => {
         console.log('CREATE_PRODUCT_SUCCESS action being handled!');
-        const data = [...state.data, { ...product }];
-        return {
-            ...state,
-            data
-        };
+        return adapter.addOne(product, state);
     }),
 
 
@@ -69,11 +51,7 @@ const reducer = createReducer(
     }),
     on(ProductsActions.deleteProductSuccess, (state, { product }) => {
         console.log('DELETE_PRODUCT_SUCCESS action being handled!');
-        const data = state.data.filter(t => t.id !== product.id);
-        return {
-            ...state,
-            data
-        };
+        return adapter.removeOne(product.id, state);
     }),
 
 

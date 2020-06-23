@@ -19,7 +19,7 @@ import * as RouterActions from './../../../core/@ngrx/router/router.actions';
 export class ProductListComponent implements OnInit {
     // products: Observable<Product[]>;
     productState$: Observable<ProductsState>;
-    // products$: Observable<ReadonlyArray<ProductModel>>;
+    products$: Observable<ReadonlyArray<ProductModel>>;
     // productsError$: Observable<Error | string>;
     @Input() editable: boolean;
 
@@ -32,7 +32,7 @@ export class ProductListComponent implements OnInit {
     ngOnInit(): void {
         console.log('We have a store! ', this.store);
         // this.products = this.productService.getProducts();
-        this.productState$ = this.store.pipe(select('products'));
+        this.products$ = this.store.pipe(select(selectProductsData));
         this.productState$ = this.store.pipe(select(selectProductsState));
         // this.products$ = this.store.pipe(select(selectProductsData));
         // this.productsError$ = this.store.pipe(select(selectProductsError));
