@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router, UrlTree } from '@angular/router';
+import { ActivatedRoute, UrlTree } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { pluck, takeUntil } from 'rxjs/operators';
@@ -9,6 +9,7 @@ import { Observable, Subscription, Subject } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { AppState, selectSelectedProductByUrl } from '../../../core/@ngrx';
 import * as ProductActions from './../../../core/@ngrx/products/products.actions';
+import * as RouterActions from './../../../core/@ngrx/router/router.actions';
 
 import { CanComponentDeactivate } from '../../../core/interfaces';
 import { Product, ProductModel } from '../../models/product.model';
@@ -33,7 +34,6 @@ export class ProductFormComponent implements OnInit, CanComponentDeactivate, OnD
     constructor(
         private productService: ProductService,
         private route: ActivatedRoute,
-        private router: Router,
         private dialogService: DialogService,
         private location: Location,
         private store: Store<AppState>
@@ -80,7 +80,9 @@ export class ProductFormComponent implements OnInit, CanComponentDeactivate, OnD
     }
 
     onGoBack(): void {
-        this.location.back();
+        this.store.dispatch(RouterActions.go({
+            path: ['/admin/products']
+        }));
     }
 
     compareCategories(o1: string, o2: string): boolean {

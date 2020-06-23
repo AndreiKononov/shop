@@ -1,12 +1,12 @@
 import { Action } from '@ngrx/store';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Router } from '@angular/router';
 
 // rxjs
 import { Observable, of } from 'rxjs';
 import { switchMap, map, catchError, pluck, concatMap } from 'rxjs/operators';
 
+import * as RouterActions from './../router/router.actions';
 import * as ProductsActions from './products.actions';
 import { ProductService } from '../../../products/services/products.service';
 import { Product } from '../../../products/models/product.model';
@@ -15,7 +15,6 @@ import { Product } from '../../../products/models/product.model';
 export class ProductsEffects {
 
   constructor(
-      private router: Router,
       private actions$: Actions,
       private productService: ProductService,
       ) {
@@ -46,7 +45,6 @@ export class ProductsEffects {
                   .updateProduct(product)
                   .pipe(
                       map((updatedProduct: Product) => {
-                          this.router.navigate(['/admin/products']);
                           return ProductsActions.updateProductSuccess({ product: updatedProduct });
                       }),
                       catchError(error => of(ProductsActions.updateProductError({ error })))
@@ -64,7 +62,6 @@ export class ProductsEffects {
                   .createProduct(product)
                   .pipe(
                       map((createdProduct: Product) => {
-                          this.router.navigate(['/admin/products']);
                           return ProductsActions.createProductSuccess({ product: createdProduct });
                       }),
                       catchError(error => of(ProductsActions.createProductError({ error })))
@@ -82,7 +79,6 @@ export class ProductsEffects {
                   .deleteProduct(product)
                   .pipe(
                       map(() => {
-                          this.router.navigate(['/admin/products']);
                           return ProductsActions.deleteProductSuccess({ product });
                       }),
                       catchError(error => of(ProductsActions.deleteProductError({ error })))
@@ -90,5 +86,12 @@ export class ProductsEffects {
           )
       )
   );
+
+  createUpdateProductSuccess$: Observable<Action> = createEffect(() => {
+      return this.actions$.pipe(
+          ofType(ProductsActions.createProductSuccess, ProductsActions.updateProductSuccess),
+          map(action => RouterActions.go({ path: ['/admin/products'] }))
+      );
+  });
 
 }
