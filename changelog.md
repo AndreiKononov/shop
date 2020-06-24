@@ -61,3 +61,10 @@
   - Products receive using of Observable, orders - Promise
   - Was added TimingInterceptor
   - Was added AppSettings service
+
+# Task 7. NgRx
+  - Products and cart have been rewritten using @ngrx/store, @ngrx/effects
+  - Was added @ngrx/router-store
+  - Was added @ngrx/entity (adapter) for products
+  - Was implemented State Preloading
+  - Was added '@ngrx/data' for orders
