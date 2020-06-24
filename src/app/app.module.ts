@@ -13,6 +13,7 @@ import { SharedModule } from './shared/shared.module';
 import { LayoutModule } from './layout/layout.module';
 import { AdminModule } from './admin/admin.module';
 import { TimingInterceptor } from 'src/app/core/interceptors';
+import { RootStoreModule } from './core/@ngrx/root-store.module';
 
 @NgModule({
     declarations: [ AppComponent],
@@ -26,6 +27,7 @@ import { TimingInterceptor } from 'src/app/core/interceptors';
         SharedModule,
         LayoutModule,
         AdminModule,
+        RootStoreModule,
         AppRoutingModule,
     ],
     providers: [{

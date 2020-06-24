@@ -1,5 +1,7 @@
+<!--    *ngFor="let product of products | async"-->
+<!--*ngFor="let product of (products$ | async)">-->
 <app-product
-    *ngFor="let product of products | async"
+    *ngFor="let product of (products$ | async)"
     [product]="product"
     [editable]="editable"
     (buyProduct)="onBuyProduct($event)"
@@ -7,3 +9,5 @@
     (editProduct)="onEditProduct($event)"
     (deleteProduct)="onDeleteProduct($event)"
 ></app-product>
+<!--<p *ngIf="(productState$ | async).error as value">{{value}}</p>-->
+<p *ngIf="(productsError$ | async) as value">{{value}}</p>

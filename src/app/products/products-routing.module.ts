@@ -7,14 +7,18 @@ import {
     ProductFormComponent,
 } from '.';
 
+import { ProductsStatePreloadingGuard, ProductExistsGuard } from './guards';
+
 const routes: Routes = [
     {
         path: 'products-list',
         component: ProductListComponent,
+        canActivate: [ProductsStatePreloadingGuard],
     },
     {
         path: 'product/:productID',
         component: ProductDetailsComponent,
+        canActivate: [ProductExistsGuard],
     },
 ];
 

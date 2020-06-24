@@ -1,18 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { OrderService } from 'src/app/core/services';
-import { OrderModel } from 'src/app/core/models';
+import { Observable } from 'rxjs';
+import { Order } from 'src/app/core/models';
+import { EntityCollectionService, EntityServices } from '@ngrx/data';
 
 @Component({
     selector: 'app-order-list',
     templateUrl: './order-list.component.html',
     styleUrls: ['./order-list.component.scss'],
 })
-export class OrderListComponent implements OnInit {
-    orders: Promise<OrderModel[]>;
 
-    constructor(public orderService: OrderService) {}
+export class OrderListComponent implements OnInit {
+    orders$: Observable<ReadonlyArray<Order>>;
+    private ordersService: EntityCollectionService<Order>;
+
+    constructor(entityServices: EntityServices) {
+        this.ordersService = entityServices.getEntityCollectionService('Order');
+    }
 
     ngOnInit(): void {
-        this.orders = this.orderService.getOrders();
+        this.orders$ = this.ordersService.entities$;
     }
 }

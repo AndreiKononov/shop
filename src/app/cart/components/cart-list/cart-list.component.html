@@ -1,21 +1,18 @@
-<div *ngIf="cartItems.length; else emptyCart" class="cart">
+<div *ngIf="(cartItems$ | async).length; else emptyCart" class="cart">
     <h6>You selected:</h6>
     <div class="flex-container">
         <div class="flex-item cart-list">
             <ol>
-                <li *ngFor="let cartItem of cartItems | orderBy: sortForm.value:ascendingOrder;" appHoverEffect>
+                <li *ngFor="let cartItem of cartItems$ | async" appHoverEffect>
                     <app-cart-item
                         [cartItem]="cartItem"
-                        (increaseQuantity)="onIncreaseQuantity($event)"
-                        (decreaseQuantity)="onDecreaseQuantity($event)"
-                        (removeCartItem)="onRemoveCartItem($event)"
                     >
                     </app-cart-item>
                     <hr>
                 </li>
             </ol>
             <div>
-                <h6>Total price: {{ getTotalSum() | currency }}</h6>
+                <h6>Total price: {{ totalSum$ | async | currency }}</h6>
             </div>
         </div>
         <div class="flex-item">
@@ -31,7 +28,7 @@
             </label>
         </div>
         <div class="flex-item"
-            (click)="ascendingOrder = !ascendingOrder"
+             (click)="changeDirection()"
             *ngIf="sortForm.value">
             <a>
                 <svg *ngIf="!ascendingOrder" class="bi bi-arrow-down-square" width="2em" height="2em" viewBox="0 0 16 16"

@@ -9,7 +9,7 @@ import {
     ChangeDetectorRef,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Product} from '../../models/product.model';
+import { Product } from '../../models/product.model';
 import { ProductCommunicatorService } from '../../services/product-communicator.service';
 import { AppSettings } from '../../../core/services';
 import { AppSettingsModel } from '../../../core/models';

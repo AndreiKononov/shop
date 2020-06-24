@@ -24,9 +24,10 @@ export class HeaderComponent implements OnInit {
         this.appSettings.channel$.subscribe(this.setIsDarkTheme.bind(this));
     }
 
-        getTotalQuantity(): number {
-        return this.cartService.totalQuantity;
+    getTotalQuantity(): any {
+        return this.cartService.getStorageData().length;
     }
+
 
     ngAfterViewInit() {
         this.titleTag.nativeElement.innerText = 'My shop';

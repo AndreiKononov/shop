@@ -5,6 +5,9 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { AuthService } from './../../../core';
+import * as RouterActions from "../../../core/@ngrx/router/router.actions";
+import {Store} from "@ngrx/store";
+import { AppState } from '../../../core/@ngrx';
 
 @Component({
     selector: 'app-login',
@@ -15,7 +18,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     message: string;
     private unsubscribe: Subject<void> = new Subject();
 
-    constructor(public authService: AuthService, private router: Router) {}
+    constructor(
+        public authService: AuthService,
+        private store: Store<AppState>
+    ) {}
 
     ngOnDestroy() {
         this.unsubscribe.complete();
@@ -30,7 +36,9 @@ export class LoginComponent implements OnInit, OnDestroy {
                     const redirect = this.authService.redirectUrl
                         ? this.authService.redirectUrl
                         : '/admin';
-                    this.router.navigate([redirect]);
+                    this.store.dispatch(RouterActions.go({
+                        path: [redirect]
+                    }));
                 }
             },
             error: (err: any) => console.log(err),

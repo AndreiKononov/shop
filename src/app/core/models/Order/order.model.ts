@@ -1,7 +1,7 @@
 import { CartItem } from '../../../cart/models/cartItem.model';
 import { OrderStatus } from '..';
 
-export interface OrderModel {
+export interface Order {
     id: string;
     date: Date;
     status: OrderStatus;

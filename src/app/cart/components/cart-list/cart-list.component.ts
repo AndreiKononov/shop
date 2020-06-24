@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
 
-import { CartService } from '../../services/cart.service';
+import { CartFacade } from 'src/app/core/@ngrx';
 import { CartItem } from '../../models/cartItem.model';
 
 @Component({
@@ -11,31 +12,29 @@ import { CartItem } from '../../models/cartItem.model';
 })
 
 export class CartListComponent implements OnInit {
-    cartItems: CartItem[];
+    cartItems$: Observable<ReadonlyArray<CartItem>>;
+    totalQuantity$: Observable<number>;
+    totalSum$: Observable<number>;
     sortForm = new FormControl();
-    sortList: string[] = ['name', 'quantity', 'price'];
-    ascendingOrder = false;
+    sortList: string[] = ['price', 'quantity', 'name'];
+    ascendingOrder: boolean = false;
 
     constructor(
-        private cartService: CartService,
+        private cartFacade: CartFacade,
     ) {}
 
     ngOnInit(): void {
-        this.cartItems = this.cartService.getCartItems();
+        this.cartItems$ = this.cartFacade.cartProducts$;
+        this.totalQuantity$ = this.cartFacade.totalQuantity$;
+        this.totalSum$ = this.cartFacade.totalSum$;
     }
 
-    getTotalSum(): number {
-        return this.cartService.totalSum;
-    }
+    // changeSortName(sortName): void {
+    //     this.cartFacade.setSortName({ sortName });
+    // }
 
-    onRemoveCartItem(cartItem: CartItem): void {
-        this.cartService.removeProduct(cartItem);
-    }
-
-    onIncreaseQuantity(cartItem: CartItem): void {
-        this.cartService.increaseQuantity(cartItem);
-    }
-    onDecreaseQuantity(cartItem: CartItem): void {
-        this.cartService.decreaseQuantity(cartItem);
+    changeDirection(): void {
+        this.ascendingOrder = !this.ascendingOrder;
+        this.cartFacade.setDirection({ sortDirection: this.ascendingOrder });
     }
 }
