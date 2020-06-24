@@ -10,6 +10,11 @@ export const {
     selectEntities: selectProductsEntities,
     selectAll: selectProductsData
 } = adapter.getSelectors(selectProductsState);
+const selectOriginalProduct = (state: ProductsState) => state.originalProduct;
+export const selectProductsOriginalProduct = createSelector(
+    selectProductsState,
+    selectOriginalProduct
+);
 
 export const selectSelectedProductByUrl = createSelector(
     selectProductsEntities,

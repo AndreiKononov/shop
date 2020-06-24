@@ -1,30 +1,47 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, } from '@angular/core';
 
 import { CartItem } from '../../models/cartItem.model';
+import { CartFacade, ProductsFacade } from 'src/app/core/@ngrx';
 
 @Component({
-  selector: 'app-cart-item',
-  templateUrl: './cart-item.component.html',
-  styleUrls: ['./cart-item.component.scss']
+    selector: 'app-cart-item',
+    templateUrl: './cart-item.component.html',
+    styleUrls: ['./cart-item.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
-
 export class CartItemComponent {
-
     @Input() cartItem: CartItem;
 
-    @Output() increaseQuantity: EventEmitter<CartItem> = new EventEmitter<CartItem>();
-    @Output() decreaseQuantity: EventEmitter<CartItem> = new EventEmitter<CartItem>();
-    @Output() removeCartItem: EventEmitter<CartItem> = new EventEmitter<CartItem>();
-
-    onIncreaseQuantity(): void {
-        this.increaseQuantity.emit(this.cartItem);
-    }
-
-    onDecreaseQuantity(): void {
-        this.decreaseQuantity.emit(this.cartItem);
+    constructor(
+        private productsFacade: ProductsFacade,
+        private cartFacade: CartFacade
+    ) {
     }
 
     onRemoveCartItem(): void {
-        this.removeCartItem.emit(this.cartItem);
+        const productToReturn = {
+            ...this.cartItem.product,
+            availableCount: this.cartItem.product.availableCount + this.cartItem.count
+        };
+        this.cartFacade.removeProduct({ cartItem: this.cartItem });
+        this.productsFacade.returnProduct({ product: productToReturn });
+    }
+
+    onIncreaseQuantity(): void {
+        const productToBuy = {
+            ...this.cartItem.product,
+            availableCount: this.cartItem.product.availableCount - 1
+        };
+        this.cartFacade.increaseQuantity({ cartItem: this.cartItem });
+        this.productsFacade.buyProduct({ product: productToBuy });
+    }
+
+    onDecreaseQuantity(): void {
+        const productToReturn = {
+            ...this.cartItem.product,
+            availableCount: this.cartItem.product.availableCount + 1
+        };
+        this.cartFacade.decreaseQuantity({ cartItem: this.cartItem });
+        this.productsFacade.returnProduct({ product: productToReturn });
     }
 }

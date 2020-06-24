@@ -8,6 +8,8 @@ export interface ProductModel {
     price: number,
     category: Category,
     availableCount: number,
+    // bookImg: string,
+    // isAvailable: any
 }
 export class Product implements ProductModel {
     constructor(
@@ -21,9 +23,9 @@ export class Product implements ProductModel {
     ) {
     }
 
-    public bookImg = `../../.././../assets/images/${this.category}.jpg`;
-
-    public isAvailable(): boolean {
-        return this.availableCount > 0;
-    }
+    // public bookImg = `../../.././../assets/images/${this.category}.jpg`;
+    //
+    // public isAvailable(): boolean {
+    //     return this.availableCount > 0;
+    // }
 }

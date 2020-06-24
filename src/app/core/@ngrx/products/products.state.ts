@@ -3,6 +3,7 @@ import { ProductModel } from '../../../products/models/product.model';
 import { createEntityAdapter, EntityState, EntityAdapter } from '@ngrx/entity';
 
 export interface ProductsState extends EntityState<ProductModel>{
+    originalProduct: Readonly<ProductModel>;
     readonly loading: boolean;
     readonly loaded: boolean;
     readonly error: Error | string;
@@ -22,6 +23,7 @@ export const adapter: EntityAdapter<ProductModel> = createEntityAdapter<ProductM
 });
 
 export const initialProductsState: ProductsState = adapter.getInitialState({
+    originalProduct: null,
     loading: false,
     loaded: false,
     error: null

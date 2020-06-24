@@ -1,15 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
-// @Ngrx
-import { Store, select } from '@ngrx/store';
-import { AppState, ProductsState, selectProductsState, selectProductsData, selectProductsError } from '../../../core/@ngrx';
-
-import { Product, ProductModel } from '../../models/product.model';
-import * as ProductAction from './../../../core/@ngrx/products/products.actions'
-// import { ProductService } from '../../services/products.service';
-import { CartService } from '../../../cart/services/cart.service';
-import * as RouterActions from './../../../core/@ngrx/router/router.actions';
+import { CartFacade, ProductsFacade, RouterFacade } from 'src/app/core/@ngrx';
+import { Product } from '../../models/product.model';
 
 @Component({
     selector: 'app-product-list',
@@ -17,49 +10,42 @@ import * as RouterActions from './../../../core/@ngrx/router/router.actions';
     styleUrls: ['./product-list.component.scss'],
 })
 export class ProductListComponent implements OnInit {
-    // products: Observable<Product[]>;
-    productState$: Observable<ProductsState>;
-    products$: Observable<ReadonlyArray<ProductModel>>;
-    // productsError$: Observable<Error | string>;
+    products$: Observable<ReadonlyArray<Product>>;
+    productsError$: Observable<Error | string>;
+
     @Input() editable: boolean;
 
     constructor(
-        // public productService: ProductService,
-        public cartService: CartService,
-        private store: Store<AppState>
-    ) {}
+        private productsFacade: ProductsFacade,
+        private cartFacade: CartFacade,
+        private routerFacade: RouterFacade,
+    ) {
+    }
 
     ngOnInit(): void {
-        console.log('We have a store! ', this.store);
-        // this.products = this.productService.getProducts();
-        this.products$ = this.store.pipe(select(selectProductsData));
-        this.productState$ = this.store.pipe(select(selectProductsState));
-        // this.products$ = this.store.pipe(select(selectProductsData));
-        // this.productsError$ = this.store.pipe(select(selectProductsError));
-        this.store.dispatch(ProductAction.getProducts());
-
+        this.products$ = this.productsFacade.products$;
+        this.productsError$ = this.productsFacade.productsError$;
     }
 
     onBuyProduct(product: Product): void {
-        this.cartService.addProduct(product);
+        const availableCount = product.availableCount - 1;
+        const productToBuy: Product = { ...product, availableCount };
+        this.cartFacade.addProduct({ product: { ...product } });
+        this.productsFacade.buyProduct({ product: productToBuy });
     }
 
     onGoToProduct(product: Product): void {
         const link = ['/product', product.id];
-        this.store.dispatch(RouterActions.go({
-            path: link
-        }));
+        this.routerFacade.goTo({ path: link });
     }
 
     onEditProduct(product: Product): void {
         const link = ['/admin/products/edit', product.id];
-        this.store.dispatch(RouterActions.go({
-            path: link
-        }));
+        this.routerFacade.goTo({ path: link });
     }
 
     onDeleteProduct(product: Product): void {
-        const productToDelete: ProductModel = { ...product };
-        this.store.dispatch(ProductAction.deleteProduct({ product: productToDelete }));
+        const productToDelete: Product = { ...product };
+        this.productsFacade.deleteProduct({ product: productToDelete });
     }
 }

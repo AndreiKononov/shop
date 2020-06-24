@@ -1,6 +1,6 @@
 <div class="container order">
     <button
-        *ngIf="cartService.hasCartProducts(); else cartEmpty"
+        *ngIf="(cartState$ | async).data.length > 0; else cartEmpty"
         (click)="onMakeOrder()"
     >
         Make Order

@@ -1,50 +1,35 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, UrlTree } from '@angular/router';
-import { Location } from '@angular/common';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { UrlTree } from '@angular/router';
+import { switchMap, take } from 'rxjs/operators';
+import { Observable, of, Subject } from 'rxjs';
 
-import { pluck, takeUntil } from 'rxjs/operators';
-import { Observable, Subscription, Subject } from 'rxjs';
-
-// @NgRx
-import { Store, select } from '@ngrx/store';
-import { AppState, selectSelectedProductByUrl } from '../../../core/@ngrx';
-import * as ProductActions from './../../../core/@ngrx/products/products.actions';
-import * as RouterActions from './../../../core/@ngrx/router/router.actions';
-
-import { CanComponentDeactivate } from '../../../core/interfaces';
-import { Product, ProductModel } from '../../models/product.model';
-import { Category } from '../../enums/category';
-import { DialogService } from 'src/app/core';
-import { ProductService } from '../../services/products.service';
-import { ProductModule } from '../../product.module';
+import { CanComponentDeactivate, DialogService } from 'src/app/core';
+import { ProductsFacade, RouterFacade } from 'src/app/core/@ngrx';
+import { Category } from '../../enums/category'
+import { Product } from '../../models/product.model';
 
 @Component({
     templateUrl: './product-form.component.html',
     styleUrls: ['./product-form.component.scss'],
 })
-export class ProductFormComponent implements OnInit, CanComponentDeactivate, OnDestroy {
+export class ProductFormComponent
+    implements OnInit, CanComponentDeactivate, OnDestroy {
     product: Product;
-    originalProduct: ProductModule;
     Category = Category;
-    selectedCategory: string;
     private componentDestroyed$: Subject<void> = new Subject<void>();
 
-    private sub: Subscription;
-
     constructor(
-        private productService: ProductService,
-        private route: ActivatedRoute,
         private dialogService: DialogService,
-        private location: Location,
-        private store: Store<AppState>
-    ) {}
+        private productsFacade: ProductsFacade,
+        private routerFacade: RouterFacade
+    ) {
+    }
 
     ngOnInit(): void {
-        this.route.data
-            .pipe(pluck('product'))
+        this.productsFacade.selectedProductByUrl$
+            .pipe(take(1))
             .subscribe((product: Product) => {
                 this.product = { ...product } as Product;
-                this.originalProduct = { ...product } as Product;
             });
     }
 
@@ -58,31 +43,37 @@ export class ProductFormComponent implements OnInit, CanComponentDeactivate, OnD
         | Promise<boolean | UrlTree>
         | boolean
         | UrlTree {
-        const flags = Object.keys(this.product).map((key) => {
-            if (this.originalProduct[key] === this.product[key]) {
-                return true;
-            }
-            return false;
-        });
-        if (flags.every((el) => el)) {
-            return true;
-        }
-        return this.dialogService.confirm('Discard changes?');
+        const flags = [];
+        return this.productsFacade.selectedProductsOriginalProduct$.pipe(
+            switchMap(originalProduct => {
+                for (const key in originalProduct) {
+                    if (originalProduct[key] === this.product[key]) {
+                        flags.push(true);
+                    } else {
+                        flags.push(false);
+                    }
+                }
+
+                if (flags.every(el => el)) {
+                    return of(true);
+                }
+                return this.dialogService.confirm('Discard changes?');
+            })
+        );
     }
 
     onSave() {
-        const product = { ...this.product } as ProductModel;
+        const product = { ...this.product } as Product;
+        this.productsFacade.setOriginalProduct({ product });
         if (product.id) {
-            this.store.dispatch(ProductActions.updateProduct({ product }));
+            this.productsFacade.updateProduct({ product });
         } else {
-            this.store.dispatch(ProductActions.createProduct({ product }));
+            this.productsFacade.createProduct({ product });
         }
     }
 
     onGoBack(): void {
-        this.store.dispatch(RouterActions.go({
-            path: ['/admin/products']
-        }));
+        this.routerFacade.goTo({ path: ['/admin/products'] });
     }
 
     compareCategories(o1: string, o2: string): boolean {

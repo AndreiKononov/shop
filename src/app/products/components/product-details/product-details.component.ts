@@ -1,36 +1,32 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { Product } from '../../models/product.model';
-import { ProductService } from '../../services/products.service';
+import { ProductsFacade } from 'src/app/core/@ngrx';
 
 @Component({
     selector: 'app-product-details',
     templateUrl: './product-details.component.html',
     styleUrls: ['./product-details.component.scss'],
 })
-export class ProductDetailsComponent implements OnInit {
+export class ProductDetailsComponent implements OnInit, OnDestroy {
     @Input() product: Product = {} as Product;
+    private componentDestroyed$: Subject<void> = new Subject<void>();
 
-    constructor(
-        public productsService: ProductService,
-        private route: ActivatedRoute
-    ) {}
+    constructor(private productsFacade: ProductsFacade) {
+    }
 
     ngOnInit(): void {
-        const observer = {
-            next: (product: Product) => {
+        this.productsFacade.selectedProductByUrl$
+            .pipe(takeUntil(this.componentDestroyed$))
+            .subscribe((product: Product) => {
                 this.product = { ...product } as Product;
-            },
-            error: (err: any) => console.log(err),
-        };
-        this.route.paramMap
-            .pipe(
-                switchMap((params: ParamMap) =>
-                    this.productsService.getProduct(params.get('productID'))
-                )
-            )
-            .subscribe(observer);
+            });
+    }
+
+    ngOnDestroy(): void {
+        this.componentDestroyed$.next();
+        this.componentDestroyed$.complete();
     }
 }

@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { OrderModel, OrderStatus } from 'src/app/core/models';
+import { Order, OrderStatus } from 'src/app/core/models';
 import { CartItem } from '../../../cart/models/cartItem.model';
 import { OrdersAPI } from './orders.config';
 
@@ -19,7 +19,7 @@ export class OrderService {
         cartProducts: CartItem[],
         totalQuantity: number,
         total: number
-    ): Promise<OrderModel> {
+    ): Promise<Order> {
         const order = {
             id: '' + new Date().getTime(),
             date: new Date(),
@@ -27,7 +27,7 @@ export class OrderService {
             cartProducts: {...cartProducts},
             totalQuantity,
             total,
-        } as OrderModel;
+        } as Order;
         const url = this.ordersUrl;
         const body = JSON.stringify(order);
         const options = {
@@ -36,16 +36,16 @@ export class OrderService {
         return this.http
             .post(url, body, options)
             .toPromise()
-            .then((response) => response as OrderModel)
+            .then((response) => response as Order)
             .catch(this.handleError);
     }
 
-    getOrders(): Promise<OrderModel[]> {
+    getOrders(): Promise<Order[]> {
         return this.http
             .get(this.ordersUrl)
             .toPromise()
             .then((response) => {
-                return response as OrderModel[];
+                return response as Order[];
             })
             .catch(this.handleError);
     }
