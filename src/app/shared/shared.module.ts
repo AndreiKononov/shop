@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ValidatorsModule } from './validators/validators.module';
 
 import { HoverDirective, ZoomDirective, OrderByPipe } from './index';
 
@@ -15,7 +16,8 @@ import { HoverDirective, ZoomDirective, OrderByPipe } from './index';
         HoverDirective,
         ZoomDirective,
         OrderByPipe,
-        FormsModule
+        FormsModule,
+        ValidatorsModule
     ],
 })
 export class SharedModule {

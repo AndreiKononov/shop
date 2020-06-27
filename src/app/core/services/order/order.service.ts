@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Order, OrderStatus } from 'src/app/core/models';
+import { Order } from 'src/app/core/models';
 import { CartItem } from '../../../cart/models/cartItem.model';
 import { OrdersAPI } from './orders.config';
 
@@ -23,7 +23,6 @@ export class OrderService {
         const order = {
             id: '' + new Date().getTime(),
             date: new Date(),
-            status: OrderStatus.OPEN,
             cartProducts: {...cartProducts},
             totalQuantity,
             total,

@@ -1,10 +1,109 @@
-<div class="container order">
-    <button
-        *ngIf="(cartState$ | async).data.length > 0; else cartEmpty"
-        (click)="onMakeOrder()"
-    >
-        Make Order
-    </button>
+<div class="order">
+    <form (ngSubmit)="onMakeOrder()" [formGroup]="orderForm"
+          *ngIf="(cartState$ | async).data.length > 0; else cartEmpty">
+        <fieldset>
+            <div class="col">
+                <button type="submit"
+                        [disabled]="!orderForm.valid">
+                    Save
+                </button>
+            </div>
+
+
+            <div class="form-group"
+                 [ngClass]="{'has-error': (orderForm.get('firstName').touched || orderForm.get('firstName').dirty) && !orderForm.get('firstName').valid }">
+                <label class="col control-label"
+                       for="firstNameId">First Name</label>
+                <div class="col">
+                    <input class="form-control"
+                           id="firstNameId"
+                           type="text"
+                           placeholder="First Name (required)"
+                           (blur)="onFirstNameBlur()"
+                           formControlName="firstName"/>
+                    <span class="help-block" *ngIf="firstNameValidationMessage">{{ firstNameValidationMessage }}</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col control-label"
+                       for="lastNameId">Last Name</label>
+                <div class="col">
+                    <input class="form-control"
+                           id="lastNameId"
+                           type="text"
+                           placeholder="Last Name"
+                           formControlName="lastName"/>
+                </div>
+            </div>
+            <div class="form-group"
+                 [ngClass]="{'has-error': (orderForm.get('email').touched || orderForm.get('email').dirty) && !orderForm.get('email').valid }">
+                <label class="col control-label"
+                       for="emailId">Email</label>
+
+                <div class="col">
+                    <input class="form-control"
+                           id="emailId"
+                           type="email"
+                           placeholder="{{placeholder.email}}"
+                           formControlName="email"
+                           (blur)="onEmailBlur()"
+                           appAsyncEmailValidator/>
+                    <span class="help-block" *ngIf="emailValidationMessage">{{ emailValidationMessage }}</span>
+                </div>
+            </div>
+
+            <div formArrayName="phones">
+                <div *ngFor="let phone of phones.controls; let i = index" [formGroupName]="i">
+                    <div class="form-group">
+                        <label class="col control-label"
+                               for="{{ 'phoneId' + i }}">Phone</label>
+                        <div class="col">
+                            <input class="form-control"
+                                   id="{{ 'phoneId' + i }}"
+                                   type="tel"
+                                   placeholder="{{placeholder.phone}}"
+                                   formControlName="phone"/>
+                        </div>
+                        <div class="col">
+                            <button *ngIf="i>0"
+                                (click)="onRemovePhone(i)">
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col">
+                    <button type="button"
+                            (click)="onAddPhone()">
+                        Add Another Phone
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col">
+                    <label class="control-label"
+                           for="pickupId">Pickup</label>
+                    <input id="pickupId" type="checkbox" formControlName="pickup"/>
+                </div>
+            </div>
+
+            <div class="form-group" *ngIf="!orderForm.get('pickup').value"
+                 [ngClass]="{'has-error': (orderForm.get('deliveryAddress').touched || orderForm.get('deliveryAddress').dirty) && !orderForm.get('deliveryAddress').valid }">
+                <label class="col control-label"
+                       for="addressId">Delivery Address</label>
+                <div class="col">
+                <textarea class="form-control"
+                          id="addressId"
+                          placeholder="Delivery Address"
+                          formControlName="deliveryAddress"></textarea>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
 </div>
 <ng-template #cartEmpty>
     <h6 class="cart">Your Cart is Empty!</h6>
