@@ -1,11 +1,15 @@
 import { CartItem } from '../../../cart/models/cartItem.model';
-import { OrderStatus } from '..';
 
 export interface Order {
     id: string;
     date: Date;
-    status: OrderStatus;
     cartProducts: CartItem[];
     totalQuantity: number;
     total: number;
+    firstName: string;
+    lastName: string;
+    phones: { phone: string }[];
+    email: string;
+    pickup: boolean;
+    deliveryAddress: string;
 }
