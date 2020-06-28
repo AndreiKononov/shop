@@ -19,7 +19,11 @@ export class OrderByPipe implements PipeTransform {
                         direction
                     );
                 case 'quantity':
-                    return this.compare(a.count, b.count, direction);
+                    return this.compare(
+                        a.count,
+                        b.count,
+                        direction
+                    );
                 case 'name':
                     return this.compare(
                         a.product.name,
