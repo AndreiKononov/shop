@@ -68,6 +68,16 @@
   - Was added @ngrx/entity (adapter) for products
   - Was implemented State Preloading
   - Was added '@ngrx/data' for orders
+  
+# Task 8. Forms
+  - Was created a reactive form ProcessOrderComponent including fields:
+    - First Name (required)
+    - Last Name
+    - Email (required)
+    - Phone(s) (including of adding/removing phone numbers)
+    - Pickup (to hide/show delivery address textarea)
+    - Delivery Address
+    
 
 # Task 9. Unit Tests
   - Were added integrated tests for ProductComponent/ProductListComponent
