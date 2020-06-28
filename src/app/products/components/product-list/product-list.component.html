@@ -10,4 +10,4 @@
     (deleteProduct)="onDeleteProduct($event)"
 ></app-product>
 <!--<p *ngIf="(productState$ | async).error as value">{{value}}</p>-->
-<p *ngIf="(productsError$ | async) as value">{{value}}</p>
+<p *ngIf="(productsError$ | async) as value" class="products-error">{{value}}</p>

@@ -1,12 +1,12 @@
 <!--<div *ngIf="product.bookImg; else imageDefault" class="flex-item color1">-->
 <div class="flex-container">
     <div class="flex-item color1">
-        <a (click)="onGoToProduct()">
+        <a (click)="onGoToProduct()" class="go-to-link">
 <!--            <img [src]="product.bookImg" alt="Book's cover">-->
             <img src="https://picsum.photos/381/499" alt="Book's cover">
         </a>
     </div>
-    <ng-template #imageDefault>
+    <ng-template #imageDefault class="go-to-link">
         <div class="flex-item color1">
             <a (click)="onGoToProduct()">
                 <img src="https://picsum.photos/381/499" alt="Book's cover">
@@ -28,10 +28,10 @@
         </ul>
 
         <div *ngIf="editable; else buyBlock">
-            <button (click)="onEditProduct()">
+            <button (click)="onEditProduct()" class="edit-button">
                 Edit
             </button>
-            <button (click)="onDeleteProduct()">
+            <button (click)="onDeleteProduct()" class="delete-button">
                 Delete
             </button>
         </div>
@@ -40,7 +40,7 @@
 <hr>
 
 <ng-template #buyBlock>
-    <button
+    <button class="buy-button"
         (click)="onBuyProduct()"
         [disabled]="product.availableCount === 0"
         [ngStyle]="{'font-weight': product.availableCount ? 'bold' : 'initial' }">

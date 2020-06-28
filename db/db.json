@@ -16,7 +16,7 @@
       "description": "Java has changed dramatically since the previous edition of Effective Java was published shortly after the release of Java 6. This Jolt award-winning classic has now been thoroughly updated to take full advantage of the latest language and library features. The support in modern Java for multiple paradigms increases the need for specific best-practices advice, and this book delivers.",
       "price": 15,
       "category": "Java",
-      "availableCount": 0
+      "availableCount": 5
     },
     {
       "id": "3",
@@ -25,7 +25,7 @@
       "description": "Even bad code can function. But if code isn’t clean, it can bring a development organization to its knees. Every year, countless hours and significant resources are lost because of poorly written code. But it doesn’t have to be that way.",
       "price": 20,
       "category": "Other",
-      "availableCount": 0
+      "availableCount": 6
     },
     {
       "id": "4",
@@ -43,7 +43,7 @@
       "description": "When the NSA\\'s invincible code-breaking machine encounters a mysterious code it cannot break, the agency calls its head cryptographer, Susan Fletcher, a brilliant, beautiful mathematician. What she uncovers sends shock waves through the corridors of power. The NSA is being held hostage, not by guns or bombs, but by a code so complex that if released it would cripple U.S. intelligence. Caught in an accelerating tempest of secrecy and lies, Fletcher battles to save the agency she believes in. Betrayed on all sides, she finds herself fighting not only for her country but for her life, and in the end, for the life of the man she loves.",
       "price": 10,
       "category": "Fiction",
-      "availableCount": 0
+      "availableCount": 10
     }
   ],
   "order": [
